@@ -1,0 +1,26 @@
+README		Readme for C Code Extraction tool
+Steve Gibson
+4/26/99
+
+This is a simple tool that may be used to remove embedded HTML
+from a C or H file.  We are using this technique to embed HTML
+for on-line documentation in our source code (on a test basis).  
+
+This technique may be used for generation of Interface Design Documents
+(IDDs), Data Definition Documents (DDDs), or other documentation.
+
+Any comments or suggestions would be appreciated.  
+
+This is pre-alpha.  If anyone finds this useful, please send me a mail
+with your comments and suggestions (and enhancements?).
+
+All of this may be copied under GPL Version 2 or later.
+
+Flames to /dev/null.
+
+Building:
+
+	Type "make htangle" to build the tool.
+
+
+

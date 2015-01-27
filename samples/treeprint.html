@@ -1,0 +1,110 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; Linux 2.0.35 i586) [Netscape]">
+   <title>@*Directory Trees.</title>
+</head>
+<body>
+
+<center>Directory Trees
+<p>Hweb Documentation</center>
+
+<p><br>
+<p>Directory Trees. Our object is to print out a directory hierarchy in
+some pleasant way. The program takes output from <tt>find * -type d -print
+\.| sort</tt> <i>system dependencies </i>and produces a nicer-looking listing.
+More precisely, our input, which is the output of <tt>find</tt> followed
+by <tt>sort</tt>, is a list of fully qualified directory names (parent
+and child separated by slashes |'/'|); everything has already been sorted
+nicely into lexicographic order.
+<p>The <tt>treeprint</tt> routine takes one option, |"-p, which tells it
+to use the printer's line-drawing set, rather than the terminal's.
+<p>&lt;Global definitions>
+<br>&lt;Global include files>
+<br>&lt;Global declarations>;
+<br>&nbsp;<a href="treeprint.c#main">main</a>
+<br># main(argc, argv) int argc; char **argv;
+<p>&lt;|main| variable declarations>
+<br>&lt;Search for options and set special characters on |"-p>
+<br>&lt;Read output from find and enter into tree>;
+<br>&lt;Write tree on standard output>
+<br>&nbsp;exit(0);
+<p>&nbsp;We make all the siblings of a directory a linked list off of its
+left child, and the offspring a linked list off the right side. Data are
+just directory names. @d sibling left @d child right
+<p>&lt;Global decl...>=
+<br>&lt;|main| variable...>
+<br>&nbsp;
+<p>Input. Reading the tree is simple-we read one line at a time, and call
+on the recursive |add_tree| procedure.
+<p>&lt;If |buf| contains a newline, make it end there>;
+<br>add_tree(rootptr, buf);
+<p>&lt;Global include...>=
+<br>&nbsp;
+<p>&nbsp;Depending what system you're on, you may or may not get a newline
+in |buf|.
+<br>&lt;If |buf| contains a newline...>= p=buf;
+<p>&nbsp;To add a string, we split off the first part of the name and insert
+it into the sibling list. We then do the rest of the string as a child
+of the new node.
+<br>&nbsp;
+<p>&lt;Break up the string so |p| is the first word, |s| points at null-begun
+remainder, and |slashed| tells whether |*s=='/'| on entry>;
+<p>&lt;Allocate new node to hold string of size |strlen(p)|>;
+<p>&nbsp;We perform some nonsense to cut off the string |p| so that |p|
+just holds the first word of a multiword name. Variable |s| points at what
+was either the end of |p| or a slash delimiting names. In either case |*s|
+is made |'\0'|. Later, depending on whether we want to pass the whole string
+or the last piece, we will restore the slash or advance |s| one character
+to the right.
+<br>&nbsp;
+<p>&nbsp;Node allocation is perfectly standard ... @&lt;Allocate new node...@>=
+*rootptr=(struct tnode *) malloc (sizeof(struct tnode)); (*rootptr)->left
+= (*rootptr)->right = NULL; (*rootptr)->data = malloc (strlen(p)+1);
+<br>&nbsp;
+<p>&nbsp;In this simple implementation, we just read from standard input.
+@&lt;Read...@>= read_tree(stdin, root);
+<p>Output. We begin by defining some lines, tees, and corners. The |s|
+stands for screen and the |p| for printer. You will have to change this
+for your line-drawing set. @^system dependencies@>
+<br>&nbsp;
+<p>&nbsp;The default is to use the terminal's line drawing set. @&lt;Global
+declarations@>= char vert=svert; char horiz=shoriz; char cross=scross;
+char corner=scorner;
+<p>&nbsp;With option |"-p use the printer character set. @&lt;Search for
+options...@>= while (-argc>0) if (**++argv=='-') switch (*++(*argv)) case
+'p': vert=pvert; horiz=phoriz; cross=pcross; corner=pcorner; break; default:
+fprintf(stderr,"treeprint: bad option - break;
+<p>&nbsp;We play games with a character stack to figure out when to put
+in vertical bars. A vertical bar connects every sibling with its successor,
+but the last sibling in a list is followed by blanks, not by vertical bars.
+The state of bar-ness or space-ness for each preceding sibling is recorded
+in the |indent_string| variable, one character (bar or blank) per sibling.
+<br>&nbsp;
+<p>&nbsp;Children get printed before siblings. We don't bother trying to
+bring children up to the same line as their parents, because the / filenames
+are so long.
+<p>We define a predicate telling us when a sibling is the last in a series.
+d is_last(S) (S->sibling==NULL)
+<br><a href="treeprint.c#print_node">print_node</a> See Code for print_node(fp,
+indent_string, node)
+<br><a href="treeprint.c#main"></a>&nbsp;
+<p>&nbsp;/* Add vertical bar or space for this sibling&nbsp; ;
+<p>&nbsp;
+<p>&nbsp;For simplicity, we originally wrote connecting lines with |'|'|,
+|'+'|, and |'-'|. Now we replace those characters with appropriate characters
+from the line-drawing set. We take the early vertical bars and replace
+them with characters from |indent_string|, and we replace the other characters
+appropriately. We are sure to put a |corner|, not a |cross|, on the last
+sibling in a group. @&lt;Replace chars...@>= is=indent_string; for (p=string;
+*p!='\0'; p++) switch(*p) case '|': *p=*is++; break; case '+': *p=(is_last(node)
+? corner : cross); break; case '-': *p=horiz; break; default: break;
+<p>&nbsp;For this simple implementation, we just write on standard output.
+<p>&lt;Write...@>= print_node(stdout, indent_string, root);
+<p>&nbsp;
+<p>
+<hr><font size=-1>File translated from edited.</font>
+<br><font size=-1>On 27 Apr 1999, 23:13.</font>
+</body>
+</html>

@@ -1,0 +1,744 @@
+<HTML>
+<HEAD>
+<TITLE>The Literate Programming FAQ: What literate programming tools are available?</TITLE>
+</HEAD>
+<BODY>
+<A HREF="faq-7.html">Previous</A>
+<A HREF="faq-9.html">Next</A>
+<A HREF="faq.html#toc8">Table of Contents</A>
+<HR>
+<H2><A NAME="s8">8. What literate programming tools are available?</A></H2>
+
+<P>A significant number of tools for literate programming are available.
+Most have been ported from their original systems, so support multiple
+computer platforms.  If you are the developer of such a tool, and would
+like to make the software freely available, please send me email and
+I'll reply with a form (like those below) for you to fill in.  (Or
+short-circuit the process and kludge a form from below. :-)</P>
+
+
+<H2><A NAME="ss8.1">8.1 APLWEB</A></H2>
+
+<P>
+<PRE>
+Developer:      Christoph von Basum &lt;CvB@erasmus.hrz.uni-bielefeld.de&gt;
+Version:        Unknown
+Hardware:       MSDOS
+Languages:      IBM APL2 and STSC APL
+Formatter:      Plain TeX
+Availability:   Anonymous ftp from:
+                  LPA:/apl
+                  watserv1.uwaterloo.ca:/languages/apl/aplweb
+Readme:         Unknown
+
+Description:    None available.
+
+Support:        Unknown
+
+Note: The status of this particular package is unknown.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.2">8.2 AWEB</A></H2>
+
+<P>
+<PRE>
+Developer:      Unknown
+Version:        Unknown
+Hardware:       Unknown
+Languages:      Ada
+Formatter:      Unknown
+Availability:   Anonymous ftp from:
+                  LPA:/ada/web
+Readme:         Unknown
+
+Description:    None available
+
+Support:        Not supported.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.3">8.3 CLiP</A></H2>
+
+<P>
+<PRE>
+Developer:      E.W. van Ammers and M.R. Kramer
+Versions:       2.0 and 2.4b (DOS only)
+Platform:       Vax/VMS, Unix, DOS
+Languages:      Any programming language
+Formatter:      Any formatter (TeX, LaTeX, Troff, Runoff, HTML, etc) 
+                or any wordprocessor including WYSIWYG systems 
+                (Word Perfect, WinWord, Ami Pro, Word Pro, etc.)
+Availability:   Anonymous ftp from:
+                  sun01.info.wau.nl:/CLIP/ms_dos        DOS 
+                  sun01.info.wau.nl:/CLIP/ms_dos_24b    DOS (v. 2.4b)
+                  sun01.info.wau.nl:/CLIP/vax_vms       VAX/VMS
+                  sun01.info.wau.nl:/CLIP/unix          Unix
+                  CTAN:/web/clip
+                  LPA:/machines/ms-dos
+                  LPA:/machines/vax
+Readme:         With bundle above
+
+Description:
+
+  CLiP does not use explicit commands to perform the extraction
+  process. Rather it recognizes pseudostatements written as comments in
+  the programming language in question. CLiP distinguishes
+  pseudostatements from ordinary comments because the former comply with
+  a particular style. This style can be adjusted to suit virtually any
+  programming language. The CLiP approach to LP makes the system
+  extremely versatile. It is independent of programming language and
+  text processing environment. We designed CLiP to be compatible with
+  hypertext systems as well. Some hypertext examples are at
+      ftp://sun01.info.wau.nl/clip/html/queens.htm
+      ftp://sun01.info.wau.nl/clip/html/pal1.htm
+ 
+  Features:
+  + CLiP imposes virtually no limitations on the text-processing system
+    used to produce the documentation. If the text-processor supports
+    these items you can
+    + structure the documentation according to your own taste.
+    + include drawings, pictures, tables etc.
+    + disclose your documentation my means of X-ref tables, Indexes,
+      Table of contents, Table of tables, Table of figures, etc.
+    + typeset the documented code.
+  + Extracts any number of modules from a maximum of 64 source files.
+  + No pretty-printing. Code from the source files is copied &quot;as is&quot; to
+    the module.
+  + Appearance of code segments in the documentation matches those of
+    the modules to ease the identification of code segments.
+  + Supports partially specified data types.
+  + Comprehensive user manual (preliminary version) and technical
+    description.
+  - No automatic generation of a X-ref table for program identifiers.
+
+Support:  Bugs, problems and assistance by e-mail to
+                  Eric.vanAmmers@user.info.wau.nl
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.4">8.4 CWEB</A></H2>
+
+<P>
+<PRE>
+Developer:      Silvio Levy and D.E. Knuth
+Version:        3.0
+Hardware:       Unix systems (dos and amiga ports available)
+Languages:      C and C++
+Formatter:      Plain TeX and LaTeX.
+Availability:   Anonymous ftp from:
+                  labrea.stanford.edu:/pub/cweb
+                  LPA:/c.c++
+                  CTAN:/web/c_cpp/cweb
+                  DOS version in CTAN:/web/c_cpp/cwb30p8c
+                  DOS version in LPA:/machines/ms-dos
+                  Amiga version CTAN:/web/c_cpp/AmigaCWEB
+                  Mac port of CTANGLE in LPA:/machines/mac
+                  LaTeX support in LPA:/c.c++
+Readme:         Bundled with above
+Description:    No description provided.
+Support:        Bugs to levy@math.berkeley.edu
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.5">8.5 CWEBx3.0</A></H2>
+
+<P>
+<PRE>
+Developer:      Marc van Leeuwen
+Version:        Unknown
+Hardware:       Any system using ASCII code
+Languages:      ANSI C
+Formatter:      Plain TeX
+Availability:   Anonymous ftp from:
+                  ftp.cwi.nl/pub/cweb
+Readme:         Bundled with above
+Brief description:
+            A modified implementation of CWEB, with some extensions.
+            Provides a mode for full compatibility with Levy/Knuth CWEB.
+            The most significant extras are:
+            - Typedef declarations affect formatting througout source file
+            - Include files are scanned for typedef definitions
+            - Flexible selection of layout style
+            - Possibility to refer to sections using symbolic labels
+            - CTANGLE detects unbalanced braces and parentheses
+            - CWEAVE can be made to report syntax errors more easily
+            - Some additional mechanisms to avoid formatting problems
+            - New and modular set of grammar rules, based on ANSI C syntax
+            - Possibility to suppress #line directives
+            - A new manual
+
+Support:
+            bugs and remarks to M.van.Leeuwen@cwi.nl
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.6">8.6 mCWEB</A></H2>
+
+<P>
+<PRE>
+
+Developer:              Markus Oellinger
+Version:                        1.0
+Hardware:               Unix
+Languages:              C/C++
+Formatter:              plainTeX
+Availability: anonymous ftp from
+                                                        ist.tu-graz.ac.at:/pub/utils/litprog/mcweb/mcweb.tgz
+Readme:                         at same location
+Description:
+
+                                This is mCWEB 1.0, a descendant of the CWEB system of structured
+                                documentation by Donald E. Knuth and Silvio Levy.  It adds some
+                                features that are indispensable when working in a team. mCWEB
+                                regards a project of a book consisting of several chapter files.
+                                By means of import and export commands, it automatically manages
+                                all relationships between the chapters of a book and to other
+                                books.
+
+                                Interface documentation is now also part of mCWEB. It is
+                                extracted into a second TeX file. This makes it possible to
+                                define well known interfaces between the individual parts of a
+                                project that will be implemented by different persons.
+
+                                In addition, mCWEB parses C header files to find out about all
+                                the datatypes defined there.
+
+                                mCWEB comes with a full completely rewritten user manual and is
+                                compatible with CWEB.
+
+Support:        Institute of Software Technology
+                                                        moell@ist.tu-graz.ac.at
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.7">8.7 FunnelWeb</A></H2>
+
+<P>
+<PRE>
+Developer:      Ross N. Williams: ross@guest.adelaide.edu.au
+Version:        Unknown
+Hardware:       MSDOS, Mac, VMS, Sun.  Other ports reported.
+Languages:      No restrictions.
+Formatter:      Plain TeX for printing.  Otherwise, no restrictions.
+Availability:   Anonymous ftp from:
+                  CTAN:/web/funnelweb
+                  LPA:/independent
+                  ftp.adelaide.edu.au:/pub/funnelweb
+Readme:         With bundle above.
+
+Description:
+
+  FunnelWeb is a production-quality literate-programming tool that
+  emphasises simplicity and reliability. Everything about FunnelWeb,
+  from the simplicity of its language to the comprehensive tutorial in
+  the user's manual, has been designed to make this as simple, as
+  practical, and as usable a tool as possible.
+
+  Features:
+     + Provides a simple macro preprocessor facility.
+     + Can produce typeset documentation.
+     + Runs on Sun, VMS VAX, Macintosh, PC, and others.
+     + Portable C source code distributed under GNU licence.
+     + Comprehensive user's manual including tutorial.
+     + Programming-language independent.
+     + Can generate multiple output files.
+     + Allows complete control over the output text.
+     + Regression test suite with over 200 tests.
+     + Fully worked example (in /pub/funnelweb/examples).
+     - Requires TeX to produce typeset documentation.
+     - Typesets program code using TT font only.
+
+Support:  No formal support available.  Mailing list maintained with
+          about 50 subscribers.  Informal assistance available from
+          mailing list.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.8">8.8 FunnelWeb 3.0AC</A></H2>
+
+<P>
+<PRE>
+Developer:      Enhanced by A.B.Coates (coates@physics.uq.edu.au)
+                from FunnelWeb v3.0 by Ross N. Williams
+                                     (ross@guest.adelaide.edu.au)
+Version:        3.0AC
+Hardware:       MSDOS, Mac, VMS, Sun, OSF/1, Linux, Sys.V, OS/2.
+Languages:      No restrictions.
+Formatter:      Tex, LaTeX, or HTML.
+Availability:   Anonymous ftp from
+                  ftp.physics.uq.oz.au:/pub/funnelwebAC30.tar.gz
+Readme:         With bundle above; for FunnelWeb manual see WWW page
+        http://www.physics.uq.oz.au:8001/people/coates/funnelweb.html
+
+Description:
+  FunnelWeb 3.0AC is an enhanced version of FunnelWeb (see the entry
+  for FunnelWeb).  FunnelWeb is designed to be typesetter independent,
+  though FunnelWeb v3.0 only supports (La)TeX as the typesetter.
+  FunnelWeb 3.0AC also supports HTML, and creates appropriate
+  hypertext links within the document among the code sections.
+  FunnelWeb 3.0AC also supports automatic and manual insertion of line
+  directives, so that compiler errors can be flagged back to the
+  original FunnelWeb source file.  FunnelWeb 3.0AC is completely
+  compatible with FunnelWeb v3.0 sources (with one minor exception;
+  see the file README.ABC which comes with the FunnelWeb 3.0AC
+  distribution).
+
+Support:  Supported by A.B.Coates (coates@physics.uq.edu.au), subject
+          to the time constraints imposed by his thesis.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.9">8.9 FWEB</A></H2>
+
+<P>
+<PRE>
+Developer:      John A. Krommes &lt;krommes@princeton.edu&gt;
+Version:        1.53 (1.60-beta for the experienced, patient, and brave)
+Hardware:       Unix, VMS, and DOS platforms (anything with ANSI C)
+Languages:      C, C++, Fortran-77, Fortran-90, Ratfor, TeX; also, a
+                          language-independent mode.
+Formatter:      LaTeX.  Plain TeX may work, but is no longer supported.
+Availability:   Anonymous ftp from:
+                  ftp.pppl.gov:/pub/fweb
+                  CTAN:/web/fweb
+                  LPA:/fweb
+                  DOS version in LPA:/machines/ms-dos
+Readme:         In bundle with above.
+
+Description:
+
+  It also has a well-developed user's manual and its own FAQ (see
+  above).  Beginning with 1.40, documentation is maintained in gnu
+  texinfo format.  It runs on most platforms: VMS, PC, UNIX, and pretty
+  much anything that the GNU C compiler (GCC) is supported for.
+
+  Features:
+
+   + Processes multiple languages during a single run (so one can mix C
+     and Fortran, for example).
+   + Language-independent mode (v1.40).
+   + Ability to turn off pretty-printing (v1.40).
+   + Built-in Ratfor translator.
+   + Built-in macro preprocessor (closely follows ANSI C, with
+     extensions).
+   + A style file that allows the user to adjust many parameters and
+     behavior patterns of FWEB.
+   + Various operator-overloading features that provide additional
+     pretty-printing capabilities to languages such as C++ and
+     Fortran-90.
+   + Numerous miscellaneous features and command-line options.
+
+Support:        Bug reports and suggestions to krommes@princeton.edu
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.10">8.10 IMPACT</A></H2>
+
+<P>
+<PRE>
+Developer:      Timothy Larkin, from Levy/Knuth CWEB 3.1
+Version:        1.0
+Hardware:       Macintosh; requires AppleEvents.
+Languages:      C, C++
+Formatter:      TeX
+Availability:   CTAN archives
+Readme:         A short readme file is included in the SEA archive.
+
+Description:
+
+  IMPACT implements CTangle from the Levy/Knuth CWEB 3.1. It operates as
+  a foreground program, tangling files selected from the Mac File
+  Picker. Or it can operate in the background, tangling files in
+  response to odoc events sent by other applications, such as editors.
+
+Support:
+
+  I welcome any reports of bugs. The product will be updated as new
+  versions of the CWEB appear. Other features may be added as users
+  suggest them.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.11">8.11 lit2x</A></H2>
+
+<P>
+<PRE>
+Developer:      Unknown
+Version:        Unknown
+Hardware:       Unknown
+Languages:      Unknown
+Formatter:      Unknown
+Availability:   Anonymous ftp from:
+                  LPA:/independent
+Readme:         Unknown
+Description:    None available
+Support:        Unknown
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.12">8.12 Literate Programmer's Workshop (LPW)</A></H2>
+
+<P>
+<PRE>
+Developer:      Norbert Lindenberg
+Version:        1.1
+Hardware:       Apple Macintosh
+Languages:      C++, Object Pascal & others
+Formatter:      self-contained WYSIWYG system
+Availability:   Anonymous ftp from:
+                  LPA:/machines/mac
+                  CTAN:/web/lpw
+                  ftp.apple.com:/pub/literate.prog
+Readme:         With bundle above.  Also comes with 38-page manual.
+
+Description:
+
+  The Literate Programming Workshop is an environment for the integrated
+  development of program source text and documentation in combined
+  documents. It consists of a WYSIWYG word processor based on a style
+  sheet approach, a mechanism to extract parts of the text in a
+  document, and a project management system that handles multi-document
+  projects. The system is designed to be used in conjunction with the
+  Macintosh Programmer's Workshop: it prepares raw source text for the
+  MPW compilers, accepts MPW error messages, and shows them in the
+  context of the original documents. Automatic indexing and hypertext
+  features allow for easy access to both source text and documentation.
+
+  LPW is shareware.
+
+Support:        Bugs, problems, and questions to lpw@aol.com.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.13">8.13 MapleWEB</A></H2>
+
+<P>
+<PRE>
+Developer:      Unknown
+Version:        Unknown
+Hardware:       Unknown
+Languages:      Maple
+Formatter:      Unknown
+Availability:   Anonymous ftp from:
+                  LPA:/maple
+Readme:         Unknown
+Description:    None
+Support:        Unknown
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.14">8.14 MWEB (Schrod/Detig)</A></H2>
+
+<P>
+<PRE>
+Developer:      Joachim Schrod
+Version:        Unknown
+Hardware:       Unknown
+Languages:      Modula-2
+Formatter:      Unknown
+Availability:   Anonymous ftp from:
+                  LPA:/modula-2
+Readme:         Unknown
+Description:    None
+Support:        Not supported.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.15">8.15 MWEB (Sewell)</A></H2>
+
+<P>
+<PRE>
+Developer:      Sewell
+Version:        Unknown
+Hardware:       Unknown
+Languages:      Modula-2
+Formatter:      Unknown
+Availability:   Anonymous ftp from:
+                  LPA:/modula-2
+Readme:         Unknown
+Description:    None
+Support:        Not supported.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.16">8.16 noweb</A></H2>
+
+<P>
+<PRE>
+Developer:      Norman Ramsey &lt;nr@cs.virginia.edu&gt;
+Version:        2.8
+Hardware:       Unix and DOS platforms (DOS binaries available for v2.7).
+Languages:      All programming languages, singly or in combination.
+                Automatic indexing for C, Icon, Pascal, Standard ML, TeX, Yacc
+Formatter:      Plain TeX, LaTeX, and HTML formatters.
+                Will convert LaTeX to HTML automatically.
+Availability:   Anonymous ftp from:
+                  CTAN:/web/noweb
+                  LPA:/independent
+                  Last recourse, use ftp.cs.virginia.edu:pub/nr
+
+Readme:         With bundle above, or see the noweb home page:
+                  http://www.cs.virginia.edu/~nr/noweb
+                Those without ftp access can consult ``Literate Programming
+                Simplified,'' IEEE Software, September 1994, pp97-105.
+
+Description:
+
+  noweb is designed to meet the needs of literate programmers while
+  retaining the simplest possible input format.  Its primary
+  advantages are simplicity, extensibility, and language-independence.
+  noweb uses 5 control sequences to WEB's 27.  The noweb manual is
+  only 3 pages; an additional page explains how to customize its LaTeX
+  output.  noweb works ``out of the box'' with any programming
+  language, and supports TeX, latex, and HTML back ends.  A back end
+  to support full hypertext or indexing takes about 250 lines; a
+  simpler one can be written in 40 lines of awk.  The primary
+  sacrifice relative to WEB is that code is not prettyprinted.
+
+  noweb supports indexing and identifier cross-reference, including
+  hypertext ``hot links.'' noweb includes a simple, efficient
+  LaTeX-to-HTML converter, so you can use hypertext browsers on your
+  legacy documents.  noweb can also process nuweb programs, so you can
+  use noweb to convert a standard nuweb program to HTML with one
+  command.
+
+Support:        email to the author
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.17">8.17 nuweb</A></H2>
+
+<P>
+<PRE>
+Developer:      Preston Briggs: preston@cs.rice.edu
+Version:        0.87
+Hardware:       Unix systems: Sparcs, RS/6000s, HPs; (!) MSDOS and Amiga.
+Languages:      Any programming language or combination of programming
+                languages.
+Formatter:      Latex
+Availability:   Anonymous ftp from:
+                  Unix: CTAN:/web/nuweb
+                  DOS:  CTAN:/web/nuweb-pc
+                  LPA:/independent
+                  Amiga: CTAN:/web/nuweb/nuweb_ami
+                  Amiga: wuarchive.wustl.edu/pub/aminet
+Readme:         Send mail to preston@cs.rice.edu
+
+Description:
+
+  A single program that takes a web file written in a combination of
+  latex and any programming language(s) and produces a latex file that
+  can be pretty printed and a set of files containing code for
+  compilation/interpretation by the appropriate language processors.
+
+  Strengths include speed, simplicity, multiple languages, nice indices
+  and cross-references, latex.  Doesn't require any special macros or
+  macro files.
+
+  Drawbacks: latex-dependent, no code pretty printing, harder to make
+  indices than cweb.
+
+  More good stuff: nice support for make, doesn't reformat source files,
+  so they're easy to debug.  Lots of control without too much effort.
+  That is, it doesn't do too much!
+
+  Future directions... Very little change planned, except perhaps
+  refinements in the indexing software.
+
+Support:        Hack it yourself or send e-mail to preston@cs.rice.edu
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.18">8.18 ProTeX</A></H2>
+
+<P>
+<PRE>
+Developer:      Eitan Gurari &lt;gurari@cis.ohio-state.edu&gt;
+Version:        ProTeX 1.1,  AlProTeX 1.4
+Hardware:       Any platform with (La)TeX
+Languages:      Any language
+Formatter:      TeX or LaTeX
+Availability:   Anonymous ftp from:
+                  ftp.cis.ohio-state.edu : pub/tex/osu/gurari/
+                  LPA:/independent
+Readme:         With bundle above
+
+Description:   
+  + Easy to use
+  + Extensible
+  + Language independent
+  + Multiple output files
+  + Fast (single compilation provides output and dvi files)
+  + No installation is needed besides copying the files (written in TeX)
+  Introduction of main features and examples in pub/tex/osu/gurari/LitProg
+  Complete manual in Eitan M. Gurari, &quot;TeX and LaTeX: Drawing and 
+  Literate Programming&quot;, McGraw-Hill, 1994
+
+Support:        gurari@cis.ohio-state.edu
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.19">8.19 RWEB</A></H2>
+
+<P>
+<PRE>
+Developer:      Unknown
+Version:        Unknown
+Hardware:       Unknown
+Languages:      Unknown
+Formatter:      Unknown
+Availability:   Anonymous ftp from:
+                  LPA:/reduce
+Readme:         Unknown
+Description:    Web generator in AWK.
+Support:        Unknown
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.20">8.20 SchemeWEB</A></H2>
+
+<P>
+<PRE>
+Developer:      John D. Ramsdell
+Version:        2.1
+Hardware:       Unix and DOS platforms
+Languages:      Any dialect of Lisp.
+Formatter:      LaTeX.
+Availability:   The Unix version is in the Scheme Repository and it is
+                available via anonymous ftp from:
+                  cs.indiana.edu:/pub/scheme-repository/utl/schemeweb.sh
+                  LPA:/lisp
+                  CTAN:/tex-archive/web/schemeweb
+                The DOS version is part of the PCS/Geneva Scheme system
+                which is available via anonymous ftp from:
+                  cui.unige.ch:/pub/pcs
+                  LPA:/machines/ms-dos
+Readme:         In bundle with above.
+
+Description:
+
+  SchemeWEB is a Unix filter that allows you to generate both Lisp and
+  LaTeX code from one source file.  The generated LaTeX code formats
+  Lisp programs in typewriter font obeying the spacing in the source
+  file. Comments can include arbitrary LaTeX commands.  SchemeWEB was
+  originally developed for the Scheme dialect of Lisp, but it can easily
+  be used with most other dialects.
+
+Support:        Bug reports to ramsdell@mitre.org.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.21">8.21 SpideryWEB</A></H2>
+
+<P>
+<PRE>
+Developer:      Norman Ramsey &lt;norman@bellcore.com&gt;
+Version:        Unknown
+Hardware:       Unix and DOS platforms
+Languages:      Most Algol-like languages, including C, Ada, Pascal,
+                Awk, and many others.
+Formatter:      Plain TeX and latex for text formatters.
+Availability:   Anonymous ftp from:
+                CTAN
+                LPA:/spiderweb
+Readme:         In distribution.
+
+Description:
+
+  A system for building language-dependent WEBs. Spider is frozen; no
+  further development is planned.
+
+Support:        Bug reports to spider-bugs@oracorp.com.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.22">8.22 WEB</A></H2>
+
+<P>
+<PRE>
+Developer:      Donald Knuth
+Version:        Unknown
+Hardware:       Unknown
+Languages:      Pascal
+Formatter:      TeX (of course! ;-)
+Availability:   Anonymous ftp from:
+                  LPA:/pascal
+Readme:         Unknown
+
+Description:
+
+This is the original software that started it all.  The original TeX
+processor was written in WEB.
+
+Support:        None known.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss8.23">8.23 WinWordWEB</A></H2>
+
+<P>
+<PRE>
+Developer:      Lee Wittenberg &lt;leew@pilot.njin.net&gt;
+Version:        Unknown
+Hardware:       Needs Microsoft Word for Windows, v.2.x, and, of course,
+                MS-Windows 3.x.
+Languages:      Any programming language.
+Formatter:      Word for Windows 2.x for text formatting and file
+                maintenance.
+Availability:   Anonymous ftp from:
+                  bart.kean.edu:pub/leew
+                  LPA:/machines/ms-dos
+                World-Wide Web (WWW)
+Readme:         WORDWEB.DOC in the downloadable package describes the
+                system.
+
+Description:
+
+  WinWordWEB is a set of a Word for Windows macros (plus a paragraph
+  style) that provide a crude literate programming environment.  The
+  ``look and feel'' of the system is based on Norman Ramsey's noweb, but
+  can easily be modified to suit individual tastes.
+
+Support:
+
+  None.  WinWordWEB was written as a prototype to see if a WYSIWYG
+  literate programming system was possible.  It is intended as a jumping
+  off point for future work by others. However, the system is
+  surprisingly usable as it stands, and the author is interested in
+  hearing from users (satisfied and dissatisfied).
+
+  Anyone interested in actively supporting (and improving) the product
+  should contact the author via email.
+</PRE>
+</P>
+
+
+<HR>
+<A HREF="faq-7.html">Previous</A>
+<A HREF="faq-9.html">Next</A>
+<A HREF="faq.html#toc8">Table of Contents</A>
+</BODY>
+</HTML>

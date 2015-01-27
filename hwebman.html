@@ -1,0 +1,179 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; Linux 2.0.35 i586) [Netscape]">
+   <title>Hweb Documentation Manual</title>
+</head>
+<body>
+&nbsp;
+<center>
+<h1>
+The Hweb System of Structured Documentation</h1></center>
+
+<center>
+<p><br>(Version 0.01)
+<p><font size=+1>Steve Gibson</font></center>
+
+<p><br>
+<p>&nbsp;copyright &copy; 1999 by Steve Gibson&nbsp; free to copy and modify(GPL)
+<br>&nbsp;
+<br>&nbsp;
+<br>
+<center>
+<p><b><font size=+1>Introduction</font></b></center>
+
+<p><font size=+1>The philosophy behind Hweb is that programmers who want
+to provide the best possible documentation for their programs need two
+things simultaneously: a text processing and formatting system, and a progamming
+language system. Neither type of system can provide the best documentation
+by itself. But when both are appropriately combined, we obtain a system
+that is much more useful than either system separately.</font>
+<p><font size=+1>The structure of a software program may be thought of
+as a ``web'' that is made up of many interconnected pieces. To document
+such a program, we want to explain each individual part of the web and
+how it relates to its neighbors. The hypertext tools provided by hweb give
+us an opportunity to explain the local structure of each part by making
+that structure visible, and the programming tools provided by C make it
+possible for us to specify the algorithms formally and unambiguously. By
+combining the two, we can develop a style of programming that maximizes
+our ability to perceive the structure of a complex piece of software, and
+at the same time the documented programs can be mechanically translated
+into a working software system that matches the documentation.</font>
+<p><font size=+1>The&nbsp; Hweb system consists of two parts; programs
+for working with text and html, and guidelines and methods for laying down
+programs. When writing a Hweb program the user keeps the code and the documentation
+in two files, labeled with the same name except for the extension . The
+something.html file is an output file and display file,&nbsp; which can
+correctly display typographic details like page layout and the use of indentation,
+italics, boldface, and mathematical symbols. You also have a modified C
+source code program that can be compiled and run as is, or you can run
+the command htangle -isomething.c&nbsp; to get a&nbsp; source file free
+of any html.</font>
+<p><font size=+1>Besides providing a documentation tool, Hweb enhances
+the C language by providing the ability to hide information and rearrange
+pieces of the program text, so that a large system can be understood entirely
+in terms of small sections and their local interrelationships.</font>
+<br><font size=+1>The advantage of programming in Hweb is that the algorithms
+can be expressed in ``untangled'' form, with each section explained separately.</font>
+<p><font size=+1>A user of Hweb should be fairly familiar with the C programming
+language. A minimal amount of acquaintance with html is also desirable,
+but in fact it can be acquired as one uses Hweb, since WSYWG editors are
+available which require virtually no knowledge of that language. To someone
+familiar with both C and html the amount of effort necessary to learn the
+commands of Hweb is small.</font>
+<br>&nbsp;
+<center>
+<p><b><font size=+1>Overview</font></b></center>
+
+<p><font size=+1>Three kinds of material go into hWeb files: raw text,
+html markup&nbsp; and C program text. A programmer writing in Hweb should
+be thinking both of the documentation and of the C program being created;
+i.e., the programmer should be instinctively aware of the different uses
+that C program and documentation will be put to. The program should end
+up being readable as a document, and give pleasure and information for
+years to come</font>
+<p><font size=+1>A Hweb file is built up from units called <i>sections
+</i>that
+are more or less self-contained. Each section has three parts:</font>
+<p><font size=+1>A test part, containing explanatory material about what
+is going on in the section.</font>
+<dl compact><font size=+1>A markup part, containing links to the program.</font></dl>
+
+<dl compact><font size=+1>A code, containing program code that C can understand</font>
+<br><font size=+1>This C code should ideally be about a dozen lines long,
+so that it is easily comprehensible as a unit and so that its structure
+is readily perceived.</font></dl>
+<font size=+1>The three parts of each section must appear in this order;
+i.e., the / commentary must come first, then the middle part, and finally
+the / code. Any of the parts may be empty.</font>
+<br><font size=+1></font>&nbsp;<font size=+1></font>
+<center>
+<p><b><font size=+1>Implementation</font></b></center>
+<b><font size=+1></font></b>
+<p><font size=+1>The C source code is edited with a simpl text editor.</font><font size=+1></font>
+<p><font size=+1>The html documentation file is edited with a html editor
+or a text editor.</font>
+<br><font size=+1>The doc file should describe how the propram works, the
+algorithem and design concepts.</font><font size=+1></font>
+<p><font size=+1>the C source file has html markup embedded in it:</font><font size=+1></font>
+<p><font size=+1>The first line in the file has /* C comment marker, then</font>
+<br><font size=+1>&lt;html></font>
+<br><font size=+1>&lt;body></font>
+<br><font size=+1>*/</font>
+<br><font size=+1>are used at the beginning of the source file to qualify
+the file as readable by a html browser</font>
+<br><font size=+1>Then &lt;pre> markup is used to tell the browser to not
+reformat the following text.</font><font size=+1></font>
+<p><font size=+1>Following is normal C program text, until a link point
+is needed.</font>
+<br><font size=+1>For example, you may wish to mark the location of the
+main() function.</font>
+<br><font size=+1>The a comment /* marker is used, followed by</font>
+<br><font size=+1>&lt;/pre></font>
+<br><font size=+1>&lt;a name="main">main&lt;/a></font>
+<br><font size=+1>&lt;pre></font>
+<br><font size=+1>*/</font><font size=+1></font>
+<p><font size=+1>In the html doc file the following contruct is used to
+link to it:</font>
+<br><font size=+1>&lt;a href="filename.c#main">main&lt;/a></font><font size=+1></font>
+<p><font size=+1>The same method can be used with .h header files.</font><font size=+1></font>
+<p><font size=+1>The C source file ends with</font>
+<br><font size=+1>/*</font>
+<br><font size=+1>&lt;/pre></font>
+<br><font size=+1>&lt;/body></font>
+<br><font size=+1>&lt;/html></font>
+<br><font size=+1>*/</font>
+<p><font size=+1>The C source can be run through the&nbsp; compiler as
+is. The html markup tags will not be seen by the compiler and the program
+should compile as intended.</font><font size=+1></font>
+<p><font size=+1>However, a utility is provided to remove all html tags
+from the C source, if desired. Run the utility htangle if you need to have
+C source code with no html tags.</font>
+<br><font size=+1></font>&nbsp;
+<p><br><font size=+1></font>
+<center>
+<p><b><font size=+1>Credits</font></b></center>
+
+<br>&nbsp;
+<center><table BORDER=0 >
+<tr>
+<td>This document describes a version a system of program writing that
+gets&nbsp; its inspiration&nbsp; from
+<br>Don Knuth's WEB system, and as adapted by Silvio Levy for CWEB. Since
+its creation in 1987, CWEB has been revised and enhanced in various ways,
+by both Knuth and Levy.
+<p>Ramsey has made literate programming accessible to users of yet other
+languages by means of his SPIDER system [see <i>Communications of the ACM
+<b>32</b></i> (1989), 1051-1055].&nbsp;
+<br>&nbsp;
+<br>&nbsp;
+<table ALIGN=LEFT >
+<caption>&nbsp;</caption>
+
+<tr>
+<td ALIGN=CENTER NOWRAP>
+<table BORDER=0 >
+<tr>
+<td ALIGN=CENTER NOWRAP>&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td ALIGN=CENTER COLSPAN="0" NOWRAP>
+<table BORDER=0 >
+<tr>
+<td ALIGN=CENTER NOWRAP>&nbsp;</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table></center>
+
+</body>
+</html>

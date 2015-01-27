@@ -1,0 +1,92 @@
+<HTML>
+<HEAD>
+<TITLE>The Literate Programming FAQ: How to anonymously ftp</TITLE>
+</HEAD>
+<BODY>
+<A HREF="faq-12.html">Previous</A>
+<A HREF="faq-14.html">Next</A>
+<A HREF="faq.html#toc13">Table of Contents</A>
+<HR>
+<H2><A NAME="s13">13. How to anonymously ftp</A></H2>
+
+<P>Pretty much everything mentioned here is available by
+anonymous FTP.  FAQ lists cross-posted to news.answers and
+rec.answers can be gotten from <CODE>rtfm.mit.edu</CODE>
+<F>18.181.0.24</F>, under <CODE>/pub/usenet/news.answers</CODE> or
+under <CODE>/pub/usenet/more.specific.group.name</CODE></P>
+<P>"anonymous FTP" is just a way for files to be stored where anyone
+can retrieve them over the Net.    For example, to retrieve the
+latest version of the literate programming FAQ, do the following:
+<PRE>
+&gt; ftp rtfm.mit.edu              /* connect to the site; message follows */
+&gt; anonymous                     /* type this when it asks for your name */
+&gt; &lt;your email address&gt;          /* type your address as the password    */
+&gt; cd /pub/usenet                /* go to the directory you want to be   */
+&gt; cd comp.programming.literate  /* one level down (no slash).           */
+&gt; dir                           /* look at what's there                 */
+&gt; get literate-progamming-faq   /* get the file; case-sensitive         */
+&gt; quit                          /* stop this mysterious thing           */
+</PRE>
+
+If your FTP program complains that it doesn't know where the site you
+want to use is, type the numerical address instead of the sitename:
+<PRE>
+&gt; ftp 18.181.0.24               /* connect with numerical address */
+</PRE>
+
+If you don't have ftp access, send e-mail to <CODE>mail-server@rtfm.mit.edu</CODE>
+with the single word "help" in the body of the message.</P>
+<P>Getting binary files (executables, or any compressed files) is only
+slightly more difficult.   You need to set binary mode inside FTP before
+you transfer the file.
+<PRE>
+&gt; binary            /* set binary transfer mode  */
+&gt; ascii             /* set back to text transfer mode */
+</PRE>
+
+FAQs and spoiler lists are generally ascii files; everything else is
+generally binary files.</P>
+<P>Some common extensions on binary files in archive sites are:
+<PRE>
+  .Z           Compressed; extract with uncompress
+  .tar.Z       Compressed 'tape archive'; uncompress then untar or tar -xvf
+  .gz or .z    Gnu gzip; use gunzip (available from prep.gnu.ai.mit.edu)
+  .sit         (Mac) StufIt archive
+  .zip         Extract with Zip or Unzip
+  .zoo         Yet another archive/compress program
+  .lhe         (Amiga) ?
+  .lzh         Lha archive program.
+  .arj         (PC) Arj archive program.
+  .exe         (PC) Sometimes self-extracting archives-just execute them.
+  .uue or .UUE Transfer as text file; use uudecode to convert to binary
+  .hqx         (Mac) BinHex format; transfer in text mode
+</PRE>
+
+Generic help can be found in the FAQs of comp.binaries.
+<CODE>&lt;your_system_type></CODE> for how to transfer, extract,
+and virus-check binary files. (At <CODE>rtfm.mit.edu</CODE>)</P>
+<P>If you can't FTP from your site, use one of the following ftp-by-mail
+servers:
+<PRE>
+  ftpmail@decwrl.dec.com
+  ftpmail@src.doc.ic.ac.uk
+  ftpmail@cs.uow.edu.au
+  ftpmail@grasp.insa-lyon.fr
+</PRE>
+
+For complete instructions, send a message reading "help" to the server.</P>
+<P>If you don't know exactly what you're looking for, or exactly where it
+is, there are programs and servers that can help you.  For more info,
+send e-mail to <CODE>mail-server@rtfm.mit</CODE>.with with the body of the
+message reading send usenet/news.answers/finding-sources</P>
+
+<P>Thanks to Aliza R. Panitz (the "buglady") for this text.  I copied it
+verbatim from her post on faq-maintainers with only minor modifications.</P>
+
+
+<HR>
+<A HREF="faq-12.html">Previous</A>
+<A HREF="faq-14.html">Next</A>
+<A HREF="faq.html#toc13">Table of Contents</A>
+</BODY>
+</HTML>

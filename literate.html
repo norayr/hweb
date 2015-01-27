@@ -1,0 +1,399 @@
+<html> <head>
+<title>Literate Programming -- Propaganda and Tools</title>
+</head>
+
+<body>
+<h1>Literate Programming -- Propaganda and Tools</h1>
+<hr>
+<h2>Table of contents</h2>
+<ul>
+  <li> <a href="#overview">Overview</a>
+       <ul>
+	 <li> <a href="#problem">The Problem</a>
+	 <li> <a href="#solution">One Solution</a>
+	 <li> <a href="#tools">Tools</a>
+       </ul>
+  <li> <a href="#examples">Examples</a>
+  <li> <a href="#cool">Cool Stuff</a>
+  <li> <a href="#references">References</a>
+  <li> <a href="#see">See Also</a>
+  <li> <a href="#contact">VASC Contact</a>
+  <li> <a href="#history">History</a>
+</ul>
+<hr>
+
+<h2><a name="overview">Overview</a></h2>
+
+<h3>A Rationale for literate programming</h3>
+<p>
+Literate programming is an approach to programming which emphasises
+that programs should be written to be read by people as well as
+compilers.  From a purist standpoint, a program could be considered a
+publishable-quality document that argues mathematically for its own
+correctness.  A different approach is that a program could
+be a document that teaches programming to the reader through its own
+example.  A more casual approach to literate programming would be that
+a program should be documented at least well enough that someone could
+maintain the code properly and make informed changes in a reasonable
+amount of time without direct help from the author.  At the most
+casual level, a literate program should at least make its own workings
+plain to the author of the program so that at least the author can
+easily maintain the code over its lifetime.
+</p>
+
+<a name="problem"><h4>The problem</h4></a>
+<p>
+Why is this a Good Thing?  I suppose it depends on how you feel about
+programming.   In some sense, if one is up against a deadline for
+getting code finished and working, trying to make a literate program
+instead of a working program might seem like a very bad idea.
+However, in a long-term project (code you don't plan to throw away in
+the near future), literate programming actually seems to pay off
+(although I have never seen a study to this effect).  Why can this
+style of program development be beneficial?
+</p>
+<ul>
+  <li> I have heard that in companies that write computer software,
+       about 10% of the 
+       hours spent of software development is spent
+       <em>writing</em> and 90% is spent doing <em>maintaining</em>,
+       <em>debugging</em>, and <em>documenting</em> the code.
+  <li> Computer programs are generally more difficult to read than to
+       write (even one's own code is often difficult to read after it
+       hasn't been looked at for a while).
+  <li> Software that is not internally or externally documented tends
+       to be thrown-away or rewritten after the person that has
+       written it leaves the organization (it is often thrown-away
+       even if it is documented).
+  <li> It is often more difficult to reuse software someone else has
+       written then to rewrite it your self because it is hard to
+       figure-out how it works.
+  <li> In practice, debugging often takes the place of understanding
+       how programs work (ie. if we all understood perfectly how our
+       own code worked we would not need to debug it to find out why
+       it is not doing what we think it should).
+</ul>
+
+<p> One element of programming that leads to the problems listed above
+is that programming languages are designed more for encouraging people
+to write code for a compiler to understand than for other people to
+understand.  This is particularly true for those of us who write in
+the C language, which is very much a low-level language and is often
+considered to be a portable and easy-to-use assembly language with
+some nice standard libraries. One nice aspect of C (besides pointers,
+etc...) is that it is very terse and thus it requires very few
+keystrokes to implement very powerful ideas.  The price for this
+terseness is it often tends to make code more difficult to read by
+people.  As the problems above indicate to me, this is probably a case
+where the cost often outweighs the benefits over the course of a
+long-term development effort (see the April fool's
+<a href="c-joke.html">article</a> from Computerworld).  Of course,
+some people do write readable C programs, but it is definately a
+hard-learned skill rather than any widespread natural ability.
+</p>
+
+<a name="solution"><h4>One Solution</h4></a>
+
+<p> <b>Literate programming</b> is defined as the combination of
+documentation and source together in a fashion suited for reading by
+human beings.</p>
+
+<p> This very general definition seems to me to indicate that it is
+one way to begin to address the difficulties with programming that I
+indicated in the previous section.  I discovered literate
+programming about two years ago, and have not found too many other
+people (at least that I know of) who use this `programming
+methodology', but I suspect that its use is not too uncommon in
+general.
+The
+<a href="http://www.desy.de/user/projects/LitProg/Start.html">
+Getting Start(l)ed</a> document in the
+<a href="http://www.desy.de/user/projects/LitProg.html">Literate
+Programming Library</a> gives an introduction to the thinking behind
+literate programming.
+</p>
+
+<p>
+<a href="http://www-cs-staff.Stanford.EDU/~knuth/">Donald Knuth</a>
+(<a href="http://www.clbooks.com/nbb/knuth.html">
+interview on CWEB</a>,
+<a href="http://www.desy.de/user/projects/LitProg/Philosophy.html">
+"Why I Must Write Readable Programs"</a>)
+coined the term literate programming and created the
+original literate programming tool/language, WEB, which he used to
+write TeX and MetaFont.  The
+<a href="#references">literate-programming FAQ</a>
+quotes Knuth as saying
+</p>
+<blockquote>
+<p>
+  The philosophy behind WEB is that an experienced system 
+     programmer, who wants to provide the best possible
+     documentation of his or her software products, needs two
+     things simultaneously: a language like TeX for formatting,
+     and a language like C for programming.  Neither type of
+     language can provide the best documentation by itself; but
+     when both are appropriately combined, we obtain a system
+     that is much more useful than either language separately.
+</p>
+
+<p>
+     The structure of a software program may be thought of as a
+     web that is made up of many interconnected pieces.  To
+     document such a program we want to explain each individual
+     part of the web and how it relates to its neighbours. The
+     typographic tools provided by TeX give us an opportunity to
+     explain the local structure of each part by making that
+     structure visible, and the programming tools provided by
+     languages such as C or Fortran make it possible for us to
+     specify the algorithms formally and unambiguously. By
+     combining the two, we can develop a style of programming
+     that maximizes our ability to perceive the structure of a
+     complex piece of software, and at the same time the
+     documented programs can be mechanically translated into a
+     working software system that matches the documentation.
+</p>
+</blockquote>
+
+<p> The source code for TeX and MetaFont is available in
+<a href="#references">book format</a>, as printed from the TeX output of
+the WEB sources for these programs.  What I found impressive about
+these listings (although I did not look at them in <em>too</em> much
+depth) is that Knuth stated in the introduction to the TeX code that
+he believed that TeX was finished, and that he believed the last bug
+had been found and corrected in the code.  The fact that I had a hard
+time conceiving of a truly `finished' program and a truly bug-free
+program indicated to me (a) that (of course) Dr.  Knuth is a far
+better programmer than I, and (b) that his programming methodology was
+probably far more reliable than the ones I had previously seen and
+used. </p>
+
+<a name="tools"><h4>Tools</h4></a>
+
+<p>
+I have heard (some) about two WEB systems that I have not used, and
+have used three WEB systems.  If anyone has experience with other
+systems and comments about them, I would like to add that information
+too.  See the <a href="#references">LP FAQ</a> for more
+information on each of these tools (and many other tools).  I will try
+to install some of these tools if people want to try them out.
+</p>
+<ul>
+  <li> <b>WEB</b> (I have not used this system)
+       <ul>
+	 <li> Advantages -- the original WEB, used to write TeX and
+	      MetaFont, written by
+	      <a href="http://www-cs-staff.Stanford.EDU/~knuth/">Donald
+	      Knuth</a>.
+	      Tied to Pascal.
+	      Provides automated indexing and cross-referencing for
+	      identifiers and procedures, pretty-printing of code.
+	      Uses TeX as formatter.
+	 <li> Criticisms -- I have heard many criticisms of this
+	      system.  It only works with PASCAL, it determines the
+	      layout of code for you when it prints based on its
+	      parsing of the code, many people don't like
+	      pretty-printing or disagree with the way WEB handles it.
+	      It treats the outputted code as object code and thus
+	      does not format it for human-reading, and makes use of
+	      debuggers difficult.  Powerful, but very complicated to
+	      use.  Does not integrate cleanly with UNIX MAKE.
+       </ul>
+  <li> <b>CWEB</b> (I have not used this system).  CWEB is like WEB,
+       but instead of being tied to Pascal, it is tied to C.  All the
+       benefits and problems are similar to WEBs.  CWEB is currently
+       DEK's favorate programming tool.
+  <li> <b><a href="http://www.ems.uq.edu.au/People/Tony/funnelweb.html">FunnelWeb</a></b>
+       FunnelWeb addresses some of the concerns listed above.
+       <ul>
+	 <li> Advantages -- Independent of source language, supports
+	      independence of formatter.  Can be made to work with a
+	      debugger, and provides LaTeX-like document formatting
+	      commands for the printed documentation.  Easily portable
+	      to systems other than UNIX (DOS, Mac, OS/2, VMS, ....).
+	      Does not reformat code output like WEB/CWEB.  Extremely
+	      reliable and solid for large projects.  Works well with
+	      MAKE. 
+	 <li> Criticisms -- No pretty-printing
+	      of code (though many including myself consider this a
+	      plus).
+       </ul>
+  <li> <b>nuweb</b>
+       <ul>
+	 <li> Advantages -- Nuweb is extremely simple and portable and
+	      fast.  It simply provides mechanisms for generating a
+	      LaTeX file or a code file from the nuweb source, which
+	      makes it like FunnelWeb but much simpler.  Most document
+	      formatting is done directly with LaTeX commands.  Works
+	      well with MAKE.
+	 <li> Criticisms -- does not support anything fancy (though
+	      this is probably really a plus).  Cross-referencing
+	      is manual and thus requires some effort.
+       </ul>
+  <li> <b><a href="http://www.cs.virginia.edu/~nr/noweb/intro.html">noweb</a></b>
+       <ul>
+	 <li> Advantages -- Noweb is like nuweb, but sacrifices some
+	      simplicity and portability for extendibility.  This
+	      makes it a more featured system because people have
+	      contributed extensions.  Noweb is able to support
+	      features such as pretty printing and automatic
+	      referencing and cross-indexing by using filters.
+	      The filters supplied with the distributions are mainly
+	      written in the
+	      <a href="http://www.cs.arizona.edu/icon/www/reference.html">Icon</a>
+	      language, and need to be compiled by
+	      or interpreted by Icon to be used, but the most important
+	      filters are also implemented in awk so that noweb will work on
+	      most any system that has awk (and you can write your own
+	      filters in any language if you want).
+	      Noweb also has good support for building
+	      html instead of (or along with) LaTeX, so code can be
+	      browsed as a cross-referenced document in Mosaic or other html
+	      browser.
+<!--
+	      (<a href="http://info.desy.de/gna/html/cc/text/tutorial3/html/minimal/ex_1-1.html">example1</a>,
+	      <a href="http://info.desy.de/gna/html/cc/text/tutorial3/html/minimal/ex_1-3.html">example2</a> 
+	      from
+	      <a href="http://www.desy.de/user/projects/LitProg.html">Literate
+	      Programming Library</a>, and 
+	      <a
+	      href="ftp://bellcore.com/pub/norman/www/noweb/examples/index.html">more</a>
+	      examples from Norman Ramsey, the author of noweb).
+	      -->
+	      Works (very) well with MAKE.
+	 <li> Criticisms -- extendibility works through pipes, so it is
+	      <em>somewhat</em> UNIX dependent.  Some would argue that
+	      more features is a bad thing (after experience with
+	      WEB/CWEB). Requires nawk, and/or icon to
+	      interpret/compile the filters.  Slower than nuweb (in
+	      generating formatted documentation), but 
+	      results are generally worth it.
+       </ul>
+</ul>
+
+<h2><a name="examples">Examples</a></h2>
+
+<ul>
+  <li> <a href="http://www.desy.de/user/projects/LitProg/Samples.html">
+       Literate programming examples</a> from  the
+       <a href="http://www.desy.de/user/projects/LitProg.html">Literate
+       Programming Library</a>.
+  <li> An <A HREF="ftp://ftp.desy.de/pub/faq/web/Applic.ps">
+       Application</A> [PostScript] of CWEB.
+  <li> The <a href="ftp://labrea.stanford.edu/pub/sgb/">Stanford
+       GraphBase</a> is a large collection of programs by
+       <a href="http://www-cs-staff.Stanford.EDU/~knuth/">Donald Knuth</a>
+       for doing all kinds of computations and games with
+       graphs; it is written in (Levy/Knuth) CWEB. More details in the
+       distribution.  
+</ul>
+  
+<h2><a name="cool">Cool Stuff</a></h2>
+Some ideas:
+<ul>
+  <li> Write the user's manual in the same files as the source code so
+       that the manual is never out of date, and serves as a coding
+       guideline.
+  <li> Put screen snapshots of the interface you are writing in the
+       formatted code (using MAKE) so that it is obvious what the code
+       is doing.
+  <li> Put pictures of the results of a image-modication routine in
+       the source code along with the routine (ie. in reading the code
+       for an edge detector, it would be nice to see an example of
+       what it does).
+  <li> Make the <code>Makefile</code> part of the documented code.
+  <li> For C++ code, where the class delarations and definitions of
+       member functions are typically in different places (ie. an
+       <code>xxx.h</code> file and an <code>xxx.cc</code> file), put
+       them in the same nuweb/noweb/FunnelWeb/CWEB file and have that
+       file generate both the .h and the .cc files.  Then write about
+       what the purpose of the class is and how it should be used.
+  <li> Put the data-flow graph in the code.
+  <li> For C++ code, put a chart of the class-hierarchy in the source
+       code.
+  <li> Write your ICRA/IROS/AAAI/... paper about your work alongside
+       your source code.
+  <li> Use TeX to write the "paper" versions of the equations your
+       code uses before the C/FORTRAN/LISP/Mathematica versions so
+       that they make sense and can be debugged by inspection of the
+       program-document.
+  <li> Try to document your code instead of running it through the
+       debugger, because you may find what you don't understand about
+       it (and thus possibly whats wrong) through explaining it.
+</ul>
+
+<h2><a name="references">References</a></h2>
+<ul>
+  <li> Literate programming <a href="literate-FAQ.gz">FAQ</a>
+       (<a href="file://rtfm.mit.edu/pub/usenet-by-group/comp.programming.literate/comp.programming.literate_FAQ">latest</a>).
+  <li> <a href="http://www.desy.de/user/projects/LitProg.html">Literate
+       Programming Library</a>.
+  <li> <a href="gopher://niord.shsu.edu/11gopher_root:[_DATA.LITPROG]">
+       Literate programming gopher-library</a>
+  <li> "Literate Programming Simplified",
+<pre>
+@article{ramsey:simplified, 
+  author="Norman Ramsey",
+  title="Literate Programming Simplified",
+  journal="IEEE Software",
+  month=sep, pages="97--105",
+  volume="11", number="5",
+  year="1994"} 
+</pre>
+  <li> "Literate Programming on a Team Project",<pre>
+@article{ramsey:literate,
+  author="Norman Ramsey and Carla Marceau",
+  title="Literate Programming on a Team Project",
+  journal="Software---Practice \& Experience",
+  month=jul,
+  volume=21, number=7, pages="677--683",
+  year="1991", 
+  also="Princeton tech report CS-TR-302-91"}
+</pre>
+  <li> Silvio Levy and Donald E. Knuth"CWEB user manual : the CWEB
+       system of structured documentation."
+       <address>E&S-TECH REPT STNC 1336c.1</address>
+  <li> Donald E. Knuth, "TEX : the program".
+       <address>E&S-BK 686.22544 K74te c.1</address>
+  <li> Donald E. Knuth, "METAFONT : the program".
+       <address>E&S-BK 655.24 K74m c.1</address>
+</ul>
+
+<h2><a name="see">See Also</a></h2>
+
+<center>
+ <a href="http://www.webring.org/cgi-bin/webring">Literate Programming Web ring</a>
+<br>
+[
+ <a href="http://www.webring.org/cgi-bin/webring?ring=litprog;id=3;prev5">Previous 5 Sites</a>
+|
+ <a href="http://www.webring.org/cgi-bin/webring?ring=litprog;id=3;sprev">Skip Previous</a>
+|
+ <a href="http://www.webring.org/cgi-bin/webring?ring=litprog;id=3;prev">Previous</a>
+|
+ <a href="http://www.webring.org/cgi-bin/webring?ring=litprog;id=3;next">Next</a>
+|
+ <a href="http://www.webring.org/cgi-bin/webring?ring=litprog;id=3;skip">Skip Next</a>
+|
+ <a href="http://www.webring.org/cgi-bin/webring?ring=litprog;id=3;next5">Next 5 Sites</a>
+|
+ <a href="http://www.webring.org/cgi-bin/webring?ring=litprog;random">Random Site</a>
+|
+ <a href="http://www.webring.org/cgi-bin/webring?ring=litprog;list">List Sites</a>
+]
+</center>
+
+<h2><a name="contact">VASC Contact</a></h2>
+
+Chris Lee
+
+<h2><a name="history">History</a></h2>
+
+10/17/94 Created by Christopher Lee
+
+<hr>
+<address><a href="/afs/cs/usr/chrislee/www/home.html">Christopher Lee | chrislee@ri.cmu.edu</a></address>
+<!-- hhmts start -->
+Last modified: Thu Oct 22 13:16:22 1998
+<!-- hhmts end -->
+<hr>This page has been accessed <img alt="[count]" src="http://www.ius.cs.cmu.edu/cgi-bin/Count.cgi?ft=0&df=vaschelp-Programming-Literate.dat&pad=0&dd=C"> times.</body> </html>

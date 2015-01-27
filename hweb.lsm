@@ -1,0 +1,15 @@
+Begin3
+Title:          HWEB
+Version:        HTML Documentation for C programs
+Entered-date:   4/26/99
+Description:    simple tools to use HTML with C source code
+		(use of HTML to document source code)
+Keywords:       HTML, DEVELOPMENT, DESIGN DOCUMENTS
+Author:         Steve Gibson
+Maintained-by:  steven sibson (smalllinux@superant.com)
+Primary-site:   sunsite
+Alternate-site: 
+Original-site:  
+Platform:       Linux
+Copying-policy: GPL
+End

@@ -1,0 +1,350 @@
+<HTML>
+<HEAD>
+<TITLE>The Literate Programming FAQ: Are there other tools I should know about?</TITLE>
+</HEAD>
+<BODY>
+<A HREF="faq-8.html">Previous</A>
+<A HREF="faq-10.html">Next</A>
+<A HREF="faq.html#toc9">Table of Contents</A>
+<HR>
+<H2><A NAME="s9">9. Are there other tools I should know about?</A></H2>
+
+<P>First of all, I'll list some not-quite-literate-programming tools.
+Some may consider these to be pretty-printers.  Others may call them
+literate programming tools.  In any event, they don't seem to be quite
+in the same category as the tools listed above, so I'll include them
+here.</P>
+
+<H2><A NAME="ss9.1">9.1 C2LaTeX</A></H2>
+
+<P>
+<PRE>
+Developer:      John D. Ramsdell
+Version:        Unknown
+Hardware:       Unix
+Languages:      C
+Formatter:      LaTeX but it's easy to change the formatter.
+Availability:   Anonymous ftp from
+                  omnigate.clarkson.edu:/pub/tex/tex-programs/c2latex.
+Readme:         Absent.  Documentation is in the C source for c2latex.
+
+Description:
+
+  C2latex provides simple support for literate programming in C.  Given
+  a C source file in which the comments have been written in LaTeX,
+  c2latex converts the C source file into a LaTeX source file.  It can
+  be used to produce typeset listings of C programs and/or documentation
+  associated with the program.
+
+  C2latex produces LaTeX source by implementing a small number of rules.
+  A C comment that starts at the beginning of a line is copied
+  unmodified into the LaTeX source file.  Otherwise, non-blank lines are
+  surrounded by a pair of formatting commands (\begin{flushleft} and
+  \end{flushleft}), and the lines are separated by \\*. Each non-blank
+  line is formatted using LaTeX's \verb command, except comments within
+  the line are formatted in an \mbox.
+
+Support:        Send bug reports to ramsdell@mitre.org.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss9.2">9.2 c2cweb</A></H2>
+
+<P>
+<PRE>
+Developer:      Werner Lemberg
+Version:        1.5
+Hardware:       DOS, OS/2, Unix (gcc) - CWEB source included
+Languages:      C, C++
+Formatter:      TeX
+Availability:   Anonymous ftp from
+                  CTAN:/web/c_cpp/c2cweb
+Readme:         In distribution.
+
+Description:
+
+  c2cweb will transform plain C or C++ code into a CWEB file to get a
+  pretty formatted output. A modified CWEAVE (which transforms the CWEB
+  file into a TeX file, see below) is included also.
+
+
+Support:        Werner Lemberg &lt;a7971428@unet.univie.ac.at&gt;
+</PRE>
+</P>
+
+
+<H2><A NAME="ss9.3">9.3 c2man</A></H2>
+
+<P>
+<PRE>
+language:       C, nroff, texinfo, latex, html
+package:        c2man
+version:        2.0 patchlevel 33
+parts:          documentation generator (C -&gt; nroff -man, -&gt; texinfo, -&gt;latex,
+                -&gt; html)
+author:         Graham Stoney &lt;greyham@research.canon.oz.au&gt;
+location:       ftp from any comp.sources.misc archive, in volume42
+                (the version in the comp.sources.reviewed archive is obsolete)
+                ftp /pub/Unix/Util/c2man-2.0.*.tar.gz from dnpap.et.tudelft.nl
+    Australia:  ftp /usenet/comp.sources.misc/volume42/c2man-2.0/*
+                from archie.au
+    N.America:  ftp /usenet/comp.sources.misc/volume42/c2man-2.0/*
+                from ftp.wustl.edu
+    Europe:     ftp /News/comp.sources.misc/volume42/c2man-2.0/*
+                from ftp.irisa.fr
+    Japan:      ftp /pub/NetNews/comp.sources.misc/volume42/c2man-2.0/*
+                from ftp.iij.ad.jp
+    Patches:    ftp pub/netnews/sources.bugs/volume93/sep/c2man* from lth.se
+description:    c2man is an automatic documentation tool that extracts comments
+                from C source code to generate functional interface
+                documentation in the same format as sections 2 & 3 of the Unix
+                Programmer's Manual. It requires minimal effort from the
+                programmer by looking for comments in the usual places near the
+                objects they document, rather than imposing a rigid
+                function-comment syntax or requiring that the programmer learn
+                and use a typesetting language. Acceptable documentation can
+                often be generated from existing code with no modifications.
+conformance:    supports both K&amp;R and ISO/ANSI C coding styles
+features:       + generates output in nroff -man, TeXinfo, LaTeX or HTML
+format
+                + handles comments as part of the language grammar
+                + automagically documents enum parameter & return values
+                + handles C (/* */) and C++ (//) style comments
+                - doesn't handle C++ grammar (yet)
+requires:       yacc/byacc/bison, lex/flex, and nroff/groff/texinfo/LaTeX.
+ports:          Unix, OS/2, MSDOS, VMS.
+portability:    very high for unix, via Configure
+status:         actively developed; contributions by users are encouraged.
+discussion:     via a mailing list: send &quot;subscribe c2man &lt;Your Name&gt;&quot; (in the
+                message body) to listserv@research.canon.oz.au
+help:           from the author and other users on the mailing list:
+                c2man@research.canon.oz.au
+announcements:  patches appear first in comp.sources.bugs, and then in
+                comp.sources.misc.
+updated:        1994/10/07
+</PRE>
+</P>
+
+
+<H2><A NAME="ss9.4">9.4 cnoweb</A></H2>
+
+<P>
+<PRE>
+Developer:      Jim Fox
+Version:        1.4 (January 4, 1991)
+Hardware:       Anything with C and TeX.
+Languages:      C
+Formatter:      Plain TeX.
+Availability:   Anonymous ftp from:
+                  CTAN
+                  LPA:/c.c++
+Readme:         Unknown, cnoweb.tex contains documentation.
+
+Description:
+
+  cnoweb is as it's name describes: write C, not web.  No tangling or
+  weaving is implemented.  Documentation (between standard /* */
+  delimiteres) is written in TeX.  cnoweb provides typesetting of
+  documentation, an table of contents of routines, and pretty-printing
+  of C source.
+
+Support:        None known.
+</PRE>
+</P>
+
+
+<H2><A NAME="ss9.5">9.5 Fold2Web</A></H2>
+
+<P>
+<PRE>
+Developer:      Bernhard Lang &lt;lang@tu-harburg.d400.de&gt;
+Version:        V0.8
+Hardware:       MSDOS
+Languages:      All (must allow comment lines)
+Formatter:      LaTeX
+Availability:   Anonymous ftp from: 
+                  kirk.ti1.tu-harburg.de (134.28.41.50)
+                    /pub/fold2web/readme
+                    /pub/fold2web/fold2web.zip
+Readme:         In distribution
+
+Description:
+
+  The idea behind the Fold2Web tool is the following: A programmer can
+  write his program source with a folding editor and later map the
+  folded source files automatically to WEB-files. The generated WEB-files
+  can then be modified by inserting required documentations.
+  
+  The advantage by starting program developement with original sources is
+  to get short design cycles during the compile/debug steps. By using a
+  folding editor the global structuring information can be already
+  captured in folds during this developement phase. Fold information is
+  typically stored in comment lines and thus will not affect the
+  efficiency of the compile/debug design cycle.
+  
+  Some folding editors and a folding mode for the emacs are available
+  (e.g. see our FUE folding editor for MSDOS machines which is a modified
+  micro emacs. Pick it at kirk in directory /pub/fold2web).
+  
+  After reaching a stable version of a program source its time to convert
+  the source file to a WEB-file and do the program documentation.
+  Fold2Web is written to convert folded source text of any programming
+  language to nuweb files. The folded structure is kept by mapping folds
+  to scraps. Fold markers which differ between languages due to different 
+  ways of specifying comments can be configured for each language.
+  
+  Good results can also achived when given but poor documented program
+  sources have to be modified. Such sources can be folded using a folding
+  editor to extract the global structures. This offers a global view to
+  the program structures and help to understand its functionality.
+  Furthermore the program code is not affected, only comment lines are
+  inserted. Once folded the program source can be automatically
+  translated to a WEB document using the above tool.
+
+Support:   email to lang@tu-harburg.d400.de
+</PRE>
+</P>
+
+
+<H2><A NAME="ss9.6">9.6 Funnelweb Mode</A></H2>
+
+<P>
+<PRE>
+Developer:      Daniel Simmons &lt;simmdan@kenya.isu.edu&gt;
+Version:        Unknown
+Availability:   http://www.miscrit.be/~ddw
+
+Description:
+
+The other day I did a quick hack to nuweb.el as included with the nuweb
+distribution so as to make a funnelweb-mode.el.  I've only used it
+briefly, and I'm sure that it can be improved quite a bit.  I've been
+thinking about adding support for folding on sections, a pull-down menu
+to select macro definitions (like the recent functions posted to
+gnu.emacs.sources for a C function definition pull-down menu) and some
+kind of tags support for funnelweb.
+
+Support:        Unknown
+</PRE>
+</P>
+
+
+<H2><A NAME="ss9.7">9.7 noweb.el</A></H2>
+
+<P>
+<PRE>
+Developer:      Bruce Stephens &lt;bruce@liverpool.ac.uk&gt;
+Version:        Unknown.
+Availability:   LitProg archives (in an email message).
+
+Description:
+
+This is a very simple mode I just hacked up.  There's a lot wrong with
+it, but I thought others may be interested, even as it stands.  It
+*requires* text properties, and assumes those used in GNU Emacs 19.22;
+it'll quite likely work with Lucid Emacs, but I haven't tried it.
+
+I use it with auctex8.1 and cc-mode 3.229, both of which are loaded
+separately (I think my emacs is dumped with them, in fact).
+
+The idea is to have one mode (which calls itself c-mode, but actually
+has LaTeX-mode keybindings) generally (this means that the code is
+hilighted nicely), and have the code chunks use a different keymap.
+
+
+Support:        Email to bruce@liverpool.ac.uk
+</PRE>
+</P>
+
+
+<H2><A NAME="ss9.8">9.8 nuweb.el</A></H2>
+
+<P>
+<PRE>
+Developer:      Dominique de Waleffe &lt;ddw@acm.org&gt;
+Version:        1.99
+Availability:   Anonymous ftp from:
+                  LPA
+                  CTAN
+
+Description:
+
+  Provides a major mode extending Auctex for editing nuweb files. Main
+  features (in 2.0):
+        - Edit scrap bodies in a separate buffer in a different mode
+      (selected using emacs defaults for files, specific indication
+      -*-mode-*-, or a buffer-local variable)
+          - Extends Auctex commands so that nuweb is called before LaTeX,
+          - Easy navigation on scrap definition and use points.
+          - Now creates an imenu (C-M-mouse1) with user index entries, macro
+      definition positions and file definition positions.
+
+Support:        Email to ddw@acm.org
+</PRE>
+</P>
+
+
+<H2><A NAME="ss9.9">9.9 TIE</A></H2>
+
+<P>
+<PRE>
+Developer:      Unknown
+Version:        Unknown
+Hardware:       Unknown
+Availability:   Anonymous ftp from:
+                  LPA:/Tools
+Readme:         Unknown
+
+Description:
+
+This software merges change files.
+
+Support:        Unknown
+</PRE>
+</P>
+
+
+<H2><A NAME="ss9.10">9.10 Web mode</A></H2>
+
+<P>
+<PRE>
+Developer:        Bart Childs &lt;bart@cs.tamu.edu&gt;
+Version:          Unknown
+Tools supported:  web, fweb, cweb, funnelweb
+Availability:     Anonymous ftp from
+                    ftp.cs.tamu.edu:pub/tex-web/web/EMACS.web-mode
+                    thrain.anu.edu.au:pub/web/EMACS.web-mode
+
+Description:
+
+This version works with versions 18 and 19 of Emacs to be best of my
+knowledge.  I have cleaned up a number of documentation items ...
+In the same directory is wm_refcard.tex which is an edited version of
+the famous one to include some web-mode commands.
+
+The files limbo* are related to its use and notice that half them
+have an uppercase L in them for LaTeX.  The setup is based upon the
+fact that we (I am not alone here) primarily use FWEB for C and Fortran
+programming.
+
+We are using version 1.40 of FWEB although John Krommes warns that it
+is not mature and the manual is not yet updated.  The info files are!
+We are using LaTeX almost exclusively.  That will likely change and we
+will revert to version 1.30 if the final form of 1.40 cannot return
+to the simple section numbers and avoid the HORRIBLE LATEX 0.1.7.2.4.6
+type section numbers.
+
+
+Support:        Unknown
+</PRE>
+</P>
+
+
+
+<HR>
+<A HREF="faq-8.html">Previous</A>
+<A HREF="faq-10.html">Next</A>
+<A HREF="faq.html#toc9">Table of Contents</A>
+</BODY>
+</HTML>

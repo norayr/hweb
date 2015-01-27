@@ -1,0 +1,198 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; Linux 2.0.35 i586) [Netscape]">
+   <title>HTML Extract</title>
+<HEADER>
+</HEADER>
+</head>
+<body>
+
+<h1>
+Module: htangle (htangle.c)</h1>
+
+<ul>
+<li>
+Purpose: to remove HTML comments from C (or any) code.</li>
+
+<li>
+Language/Compiler/O/S: ANSI C, SCO CC or GNU gcc: UNIX BCC 3.0: DOS/Windows
+3.1</li>
+
+<li>
+Author: Steve Gibson</li>
+
+<li>
+Date: 6/29/99</li>
+
+<li>
+Revision History [from RCS]</li>
+
+<li>
+After HTMLEXTRACT by Wade Hampton</li>
+
+<ul>
+<pre>&nbsp;$Log: htangle.c,v $
+
+&nbsp;*
+&nbsp;* Revision 1.1&nbsp; 1999/04/26&nbsp; 15:12:45&nbsp; steveg
+&nbsp;* Initial revision
+&nbsp;*</pre>
+</ul>
+</ul>
+
+<h1>
+Notes:</h1>
+
+<ol>
+<li>
+Usage: htangle &lt;ifile.[c,C,CC,h] >ifile.html</li>
+
+<li>
+htangle -iinfile >ifile.html</li>
+
+<li>
+Extracts text bracketed by &lt;pre> and &lt;/pre></li>
+
+<li>
+Puts at start, at end</li>
+
+<li>
+Uses stdin for input, stdout for output, or uses a file name.</li>
+
+<li>
+To build: [cc,gcc] [-g] -o htangle htangle.c</li>
+</ol>
+
+<h2>
+Requirements:</h2>
+
+<ol>
+<li>
+(1) Remove HTML from source code for on-line documentation.</li>
+</ol>
+<a href="htangle.c#includes">includes</a>&nbsp; click here to see the source
+for includes
+<p>RCS ID String: $Id: htangle.c,v 1.4 1999/04/26 15:43:43 steveg Exp $
+<p><a href="htangle.c#defines">defines</a>
+<pre></pre>
+
+<center>
+<hr>Copyright (C) 1999 Steve Gibson (under GPL)</center>
+/************************************************************************/
+/************************************************************************
+<hr>
+<h1>
+Procedure: PrintHelp</h1>
+
+<ul>
+<li>
+Purpose: print help for this module</li>
+
+<li>
+Inputs: none</li>
+
+<li>
+Outputs: stderr</li>
+</ul>
+
+<h2>
+Notes:</h2>
+
+<ol>
+<li>
+Prints help info on standard output</li>
+</ol>
+
+<h2>
+Requirements:</h2>
+
+<ol>
+<li>
+(no number) - all programs should print help with -h, -H or -? options</li>
+</ol>
+
+<pre>&nbsp;
+&nbsp;************************************************************************/
+<a href="htangle.c#PrintHelp">PrintHelp</a> See Code&nbsp;
+************************************************************************</pre>
+
+<hr>
+<h1>
+Procedure: PrintVersion</h1>
+
+<ul>
+<li>
+Purpose: print version for this module</li>
+
+<li>
+Inputs: none</li>
+
+<li>
+Outputs: stderr</li>
+</ul>
+
+<h2>
+Notes:</h2>
+
+<ol>
+<li>
+Prints version number for program</li>
+</ol>
+
+<h2>
+Requirements:</h2>
+
+<ol>
+<li>
+(no number) - all programs should print version with -V option</li>
+</ol>
+&nbsp;<a href="htangle.c#PrintVersion">PrintVersion<br>
+</a>&nbsp;
+<hr>
+<h1>
+Procedure: main</h1>
+
+<ul>
+<li>
+Purpose: module main procedure</li>
+
+<li>
+Inputs: none</li>
+
+<li>
+Outputs: stdout, stderr</li>
+</ul>
+
+<h2>
+Notes:</h2>
+
+<ol>
+<li>
+Usage: htangle -ifile.html</li>
+
+<li>
+Extracts text bracketed by and</li>
+
+<li>
+Puts at start, at end</li>
+
+<li>
+Uses stdin for input, stdout for output, should be modified to accept a
+file name and cmd-line args (e.g., use getopt).</li>
+</ol>
+
+<h2>
+Requirements:</h2>
+
+<ol>
+<li>
+(1) Extract HTML from source code</li>
+</ol>
+&nbsp;<a href="htangle.c#Main">Main</a>&nbsp;&nbsp; See Code<br>
+&nbsp;<br>
+<br>
+<BR>
+</body>
+</html>

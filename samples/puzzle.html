@@ -1,0 +1,341 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; Linux 2.0.35 i586) [Netscape]">
+   <title>@*The Problem.</title>
+</head>
+<body>
+
+<center>PUZZLE.C
+<p>Hweb Documentation</center>
+
+<p>The Problem. Our task is to help a convict escape from prison. The prison
+is 4 cells square and the convict (represented by `C' in the diagram, below)
+is in the northwesternmost cell. He can move horizontally or vertically
+(not diagonally) from cell to cell. The only exit is in the southeasternmost
+cell.
+<dl>&nbsp;
+<table BORDER >
+<tr>
+<td>height2em</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C</td>
+
+<td>&nbsp;</td>
+
+<td>P</td>
+
+<td></td>
+
+<td>P</td>
+
+<td></td>
+
+<td>P</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>height2em</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>height2em</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P</td>
+
+<td>&nbsp;</td>
+
+<td>P</td>
+
+<td></td>
+
+<td>P</td>
+
+<td></td>
+
+<td>P</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>height2em</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>height2em</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P</td>
+
+<td>&nbsp;</td>
+
+<td>P</td>
+
+<td></td>
+
+<td>P</td>
+
+<td></td>
+
+<td>P</td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>height2em</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>height2em</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P</td>
+
+<td>&nbsp;</td>
+
+<td>P</td>
+
+<td></td>
+
+<td>P</td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td>height2em</td>
+
+<td>&nbsp;</td>
+
+<td>&nbsp;</td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+</tr>
+</table>
+Complicating the problem are the 14 policemen (represented by `P's in the
+diagram) blocking the convict's way. The convict must kill all the policemen
+before he can leave, but cannot return to any cell he has already been
+in (that would be too easy).
+<p>The Solution. The program that solves the problem will be laid out like
+most C programs: &lt;Header files used by the program>
+<br>&lt;Global variables>
+<br>&lt;Functions>
+<br>&lt;The main program>;
+<p>&nbsp;We will need to represent the prison-a 2-dimensional array seems
+the logical choice. As the convict ``visits'' each cell, we will put a
+number denoting the order in which the cell was visited into the appropriate
+array element (we will use zero to represent a cell that has not yet been
+visited). Thus we can use the zero-ness of a cell to determine whether
+or not it has been visited.
+<p>We can also use this property to avoid making special cases out of the
+outer cells (which have fewer than 4 exits to other cells). We create an
+array 2 elements wider than the prison and initialize all the array elements
+that do not correspond to actual cells to -1 (marking them as ``already
+visited''-a convenient fiction). All cells in the prison now have 4 neighbors
+and can be treated exactly alike.
+<p>@dhas_been_visited(m,n)
+<br>&nbsp;<a href="puzzle.c">matrix</a>
+<br>(prison[m][n]!=0) @
+<br>&lt;Global...@>
+<p>@ The main program is simple. We let the |solve| function do all the
+work. If |solve| succeeds for the initial cell (1,1), we print the configuration
+of the prison (showing the order in which the cells were visited); if not,
+we print an error message. The latter case should never happen-it will
+occur only if there is a bug in the program or if we have misunderstood
+the problem.
+<p>@&lt;The main...@>= void main(void)
+<p>if (solve(1,1))@/print_prison(); else@/fprintf(stderr, &Iuml;mpossible");
+<p>@ In order to produce the necessary output we need to include the ``Standard
+I/O'' library: @&lt;Header...@>= #include &lt;stdio.h>
+<p>@ Printing the prison configuration is trivial, so we might as well
+get it out of the way. @&lt;Functions...@>= void print_prison(void)
+<p>register int i,j; for (i=1; i&lt;=4;i++) for (j=1; j&lt;=4;j++) @/printf("
+putc('',stdout);
+<p>@ The |solve| function is fairly straightforward, but it has a few special
+cases to deal with. The parameters represent the row and column numbers
+of the next cell to visit. If the cell has already been visited, it can't
+be visited again, so the current attempt at a solution fails. The solution
+can also fail prematurely if the convict attempts to visit the exit cell
+(4,4) without having visited all the other cells (and killing the policemen
+therein).
+<p>If the cell has not been visited before, we mark it as having been visited
+and recursively check each of the 4 neighboring cells to see if a solution
+exists starting from that cell (remember, all cells previously visited
+have been marked and cannot be visited again). If a solution exists, we
+report success. Otherwise, we report failure and pretend that the convict
+hasn't actually visited this cell yet. @d succeed return 1 @d fail return
+0 @f succeed return @f fail return
+<p>@&lt;Functions...@>= int solve(register int m, register int n)
+<p>if(has_been_visited(m,n))@/fail; @&lt;If this is the exit cell, |succeed|
+if we have visited all the other cells, |fail| otherwise@>; prison[m][n]=++number_of_cells_visited;
+/* mark cell as ``visited'' */ if(solve(m+1,n)||solve(m,n+1)||solve(m-1,n)||solve(m,n-1))@/
+succeed; @&lt;Pretend that the convict hasn't actually visited this cell
+yet@>; fail;
+<p>@ @&lt;If...@>= if (m==4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+n==4) if (number_of_cells_visited==15) /* all other cells have been visited
+*/ @/succeed; else@/ fail;
+<p>@ @&lt;Pretend...@>= -number_of_cells_visited;prison[m][n]=0;
+<p>@ We start out with no cells having been visited. @&lt;Global...@>=int
+number_of_cells_visited=0; @*Epilogue. When we ran the program, it produced
+the `Impossible' message. After checking out the program extensively, we
+found no bugs-we did not completely understand the problem. It turns out
+that the convict, while not allowed to return to a cell in which he has
+killed a policeman, <i>is </i>allowed to return to his original cell. The
+following is a valid solution:
+<p>@*Index.
+<p>
+<hr><font size=-1>File translated from T<sub>E</sub>X by <a href="http://hutchinson.belmont.ma.us/tth/">T<sub>T</sub>H</a>,
+version 2.20.</font>
+<br><font size=-1>On 27 Apr 1999, 23:08.</font></dl>
+
+</body>
+</html>

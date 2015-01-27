@@ -1,0 +1,203 @@
+<HTML>
+<HEAD>
+<TITLE>The Literate Programming FAQ: What is Literate Programming?</TITLE>
+</HEAD>
+<BODY>
+<A HREF="faq-5.html">Previous</A>
+<A HREF="faq-7.html">Next</A>
+<A HREF="faq.html#toc6">Table of Contents</A>
+<HR>
+<H2><A NAME="s6">6. What is Literate Programming?</A></H2>
+
+<P>Literate programming is the combination of documentation and source
+together in a fashion suited for reading by human beings.  In fact,
+literate programs should be enjoyable reading, even inviting!  (Sorry
+Bob, I couldn't resist!)  In general, literate programs combine source
+and documentation in a single file.  Literate programming tools then
+parse the file to produce either readable documentation or compilable
+source.  The WEB style of literate programming was created by D.E. Knuth
+during the development of his TeX typsetting software.</P>
+<P>All the original work revolves around a particular literate programming
+tool called WEB.  Knuth says:
+<BLOCKQUOTE>
+The philosophy behind WEB is that an experienced system
+programmer, who wants to provide the best possible
+documentation of his or her software products, needs two
+things simultaneously: a language like TeX for formatting,
+and a language like C for programming.  Neither type of
+language can provide the best documentation by itself; but
+when both are appropriately combined, we obtain a system
+that is much more useful than either language separately.
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+The structure of a software program may be thought of as a
+web that is made up of many interconnected pieces.  To
+document such a program we want to explain each individual
+part of the web and how it relates to its neighbours. The
+typographic tools provided by TeX give us an opportunity to
+explain the local structure of each part by making that
+structure visible, and the programming tools provided by
+languages such as C or Fortran make it possible for us to
+specify the algorithms formally and unambigously. By
+combining the two, we can develop a style of programming
+that maximizes our ability to perceive the structure of a
+complex piece of software, and at the same time the
+documented programs can be mechanically translated into a
+working software system that matches the documentation.
+</BLOCKQUOTE>
+</P>
+<P>Another author (Eric W. van Ammers) wrote me a short article treating
+his opinions on literate programming.  The text follows: 
+<BLOCKQUOTE>
+First observation on LP
+<P>About 90% of the disussion on this list is about problems
+with applying some WEB-family member to a particular
+programming language or a special documentation situation.
+This is ridiculous, I think. Let me explain shortly why.</P>
+<P>Lemma 1:</P>
+<P>I have proposed for many years that programming has nothing
+to do with programming langauges, i.e. a good programmer
+makes good programs in any language (given some time to
+learn the syntax) and a bad programmer will never make a
+good program, no matter the language he uses (today many
+people share this view, fortunately).</P>
+<P>Lemma 2:</P>
+<P>Literate Programming has (in a certain way not yet
+completely understood) to do with essential aspects of
+programming.</P>
+<P>Conclusion 1:</P>
+<P>A LP-tool should be independent of programming language.</P>
+<P>Lemma 3:</P>
+<P>It seems likely that the so called BOOK FORMAT PARADIGM
+<F>ref. 1</F> plays an important role in making literate programs
+work.</P>
+<P>Lemma 4:</P>
+<P>There are very many documentation systems currently
+being used to produce documents in the BOOK FORMAT.</P>
+<P>Conclusion 2:</P>
+<P>A LP-tool should be independent of the documentation
+system that the program author whishes to use.</P>
+<P>My remark some time ago that we should discuss the generic
+properties of an LP-tool was based on the above observation.</P>
+<P>References</P>
+<P><F>1</F> Paul W. Oman and Curtus Cook. ``Typographical style is
+more than cosmetic.''  <EM>CACM</EM> 33, 5, 506-520 (May 1990)</P>
+<P>Second observation on LP</P>
+<P>The idea of a literate program as a text book should be
+extendend even further. I would like to see a literate
+program as an (in)formal argument of the correctness of the
+program.</P>
+<P>Thus a literate program should be like a textbook on
+mathematicics.  A mathematical textbook explains a theory in
+terms of lemma and theorems. But the proofs are never formal
+in the sense that they are obtaind by symbol manipulation of
+a proof checker. Rather the proofs are by so called
+``informal rigour'', i.e. by very precise and unambiguous
+sentences in a natural language.</P>
+<P>Eric W. van Ammers
+Department of Computer Science
+Wageningen Agricultural University
+Dreijenplein 2                     E-mail:      ammers@rcl.wau.nl
+6703 HB  Wageningen                voice:       +31 (0)8370 83356/84154
+The Netherlands                    fax:   +31 (0)8370 84731</P>
+</BLOCKQUOTE>
+</P>
+<P>Another author (Norman Ramsey) wrote me and asked that his opinions be
+included in the FAQ.  What follows are Norman's comments verbatim.
+<BLOCKQUOTE>
+I see it's time for the ``how is literate programming
+different from verbose commenting'' question.  Perhaps David
+Thompson will get this into the FAQ.  Alert! What follows
+are my opinions.  In no way do I claim to speak for the
+(fractious) literate-programming community.
+<P>How is literate programming different from verbose
+commenting?</P>
+<P>There are three distinguishing characteristics.  In order of
+importance, they are:
+<UL>
+<LI>flexible order of elaboration</LI>
+<LI>automatic support for browsing</LI>
+<LI>typeset documentation, especially diagrams and mathematics</LI>
+</UL>
+</P>
+<P>Flexible order of elaboration means being able to divide
+your source program into chunks and write the chunks in any
+order, independent of the order required by the compiler.
+In principle, you can choose the order best suited to
+explaining what you are doing.  More subtly, this
+discipline encourages the author of a literate program to
+take the time to consider each fragment of the program in
+its proper sphere, e.g., not to rush past the error checking
+to get to the ``good parts.'' In its time and season, each
+part of the program is a good part. (This is the party line;
+your mileage may vary.)</P>
+<P>I find the reordering most useful for encapsulating tasks
+like input validation, error checking, and printing output
+fit for humans --- all tasks that tend to obscure ``real
+work'' when left inline.  Reordering is less important when
+using languages like Modula-3, which has exceptions and
+permits declarations in any order, than when using
+languages like C, which has no exceptions and requires
+declaration before use.</P>
+<P>Automatic support for browsing means getting a table of
+contents, index, and cross-reference of your program.
+Cross-reference might be printed, so that you could consult
+an index to look up the definition of an identifier `foo'.
+With good tools, you might get a printed mini-index on every
+page if you wanted.  Or if you can use a hypertext
+technology, cross-reference might be as simple as clicking
+on an identifier to reach its definition.</P>
+<P>Indexing is typically done automatically or
+`semi-automatically', the latter meaning that identifier
+definitions are marked by hand.  Diligently done
+semi-automatic indexes seem to be best, because the author
+can mark only the identifiers he or she considers important,
+but automatic indexing can be almost as good and requires no
+work.  Some tools allow a mix of the two strategies.</P>
+<P>Some people have applied literate-programming tools to large
+batches of legacy code just to get the table of contents,
+index, and cross-reference.</P>
+<P>I don't use diagrams and mathematics very often, but I
+wouldn't want to have to live without them.  I have worked
+on one or two projects where the ability to use mathematical
+formulae to document the program was indispensible.  I also
+wouldn't like to explain some of my concurrent programs
+without diagrams.  Actually I write almost all of my
+literate programs using only sections headers, lists, and
+the occasional table.</P>
+<P>
+<PRE>
+      &gt;Wouldn't it be easier to do one's literate programming using
+      &gt;a wysiwyg word processor (e.g. Word for Windows) and
+      &gt;indicate what is source code by putting it in a different
+      &gt;font?
+                        
+</PRE>
+</P>
+<P>The data formats used in wysiwyg products are proprietary,
+and they tend to be documented badly if at all.  They are
+subject to change at the whim of the manufacturer. (I'll go
+out on a limb and say there are no significant wysiwyg tools
+in the public domain.  I hope the Andrew people will forgive
+me.) These conditions make it nearly impossible to write
+tools, especially tools that provide automatic indexing and
+cross-reference support.  The CLiP people have a partial
+solution that works for tools that can export text --- they
+plant tags and delimiters throughout the document that
+enable the reordering transformation (``tangling'').</P>
+<P>People use TeX, roff, and HTML because free implementations
+of these tools are widely available on a variety of
+platforms.  TeX and HTML are well documented, and TeX and
+roff are stable.  TeX is the most portable.  I think I have
+just answered the FAQ ``how come all these tools use TeX,
+anyway?'' :-)</P>
+<P>Norman Ramsey</P>
+</BLOCKQUOTE>
+</P>
+
+<HR>
+<A HREF="faq-5.html">Previous</A>
+<A HREF="faq-7.html">Next</A>
+<A HREF="faq.html#toc6">Table of Contents</A>
+</BODY>
+</HTML>

@@ -1,0 +1,129 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (X11; I; Linux 2.0.35 i586) [Netscape]">
+   <title>@* An example of</title>
+</head>
+<body>
+
+<center>Word Count.c
+<p>Hweb Documentation</center>
+
+<p><br>
+<br>
+<p>An example for Hweb. This example, based on a program by Klaus Guntermann
+and Joachim Schrod [<i>TUGboat <b>7</b></i> (1986), 135-137] presents the
+``word count'' program from /, rewritten in \.CWEB to demonstrate literate
+programming in /. The level of detail in this document is intentionally
+high, for didactic purposes; many of the things spelled out here don't
+need to be explained in other programs.
+<p>The purpose of \.wc is to count lines, words, and/or characters in a
+list of files. The number of lines in a file is the number of newline characters
+it contains. The number of characters is the file length in bytes. A ``word''
+is a maximal sequence of consecutive characters other than newline, space,
+or tab, containing at least one visible ASCII code. (We assume that the
+standard ASCII code is in use.)
+<p>This version of \.wc has a nonstandard ``silent'' option (\.-s), which
+suppresses printing except for the grand totals over all files.
+<p>Many programs share a common structure. It's probably a good idea to
+state the overall structure explicitly at the outset, even though the various
+parts could all be introduced in unnamed sections of the code if we wanted
+to add them piecemeal.
+<p>Here, then, is an overview of the file \.wc.c that is defined by this
+Hweb program.
+<p>&lt;Header files to include>
+<br>&lt;Global variables>
+<br>&lt;Functions>
+<br>&lt;The main program>
+<p>&nbsp;We must include the standard I/O definitions, since we want to
+send formatted output to |stdout| and |stderr|.
+<p>&nbsp;<a href="wc.c">includes</a>
+<p>&nbsp;The |status| variable will tell the operating system if the run
+was successful or not, and |prog_name| is used in case there's an error
+message to be printed.
+<br>&nbsp;
+<br>&nbsp;
+<p>&nbsp;Now we come to the general layout of the |main| function.
+<p>&lt;Variables local to |main|>
+<br>&lt;Set up option selection>
+<br>&lt;Process all the files>
+<br>&lt;Print the grand totals if there were multiple files>;
+<br>exit(status);
+<p><a href="wc.c#main">main</a>&nbsp;&nbsp;&nbsp; See code
+<p>&nbsp;If the first argument begins with a `\.-', the user is choosing
+the desired counts and specifying the order in which they should be displayed.
+Each selection is given by the initial character (lines, words, or characters).
+For example, `\.-cl' would cause just the number of characters and the
+number of lines to be printed, in that order. The default, if no special
+argument is given, is `\.-lwc'.
+<p>We do not process this string now; we simply remember where it is. It
+will be used to control the formatting at output time.
+<p>If the `\.-' is immediately followed by `\.s', only summary totals are
+printed.
+<p>@&lt;Var...@>= int file_count; /* how many files there are */ char *which;
+/* which counts to print */ int silent=0; /* nonzero if the silent option
+was selected */
+<p>&nbsp;/* if no option is given, print all three values */
+<p>&nbsp;Now we scan the remaining arguments and try to open a file, if
+possible. The file is processed and its statistics are given. We use a
+|do| ... |while| loop because we should read from the standard input if
+no file name is given.
+<p>&lt;Process...@>= argc-; do@+ @&lt;If a file is given, try to open |*(++argv)|;
+|continue| if unsuccessful@>; @&lt;Initialize pointers and counters@>;
+@&lt;Scan file@>; @&lt;Write statistics for file@>; @&lt;Close file@>;
+@&lt;Update grand totals@>; /* even if there is only one file */
+<p>Here's the code to open the file. A special trick allows us to handle
+input from |stdin| when no name is given. Recall that the file descriptor
+to |stdin| is 0; that's what we use as the default initial value.
+<p>/* file descriptor, initialized to |stdin| */
+<p>/* read access code for system |open| routine */
+<p>&lt;If a file...@>= if (file_count>0 (fd=open(*(++argv),READ_ONLY))&lt;0)
+fprintf (stderr, "@.cannot open file@> status|=cannot_open_file; file_count-;
+continue;
+<p>&lt;Close file@>= close(fd);
+<p>&nbsp;We will do some homemade buffering in order to speed things up:
+Characters will be read into the |buffer| array before we process them.
+To do this we set up appropriate pointers and counters.
+<p>d buf_size BUFSIZ /* \.stdio.h's |BUFSIZ| is chosen for efficiency*/
+<p>&lt;Var...@>= char buffer[buf_size]; /* we read the input into this
+array */ register char *ptr; /* the first unprocessed character in |buffer|
+*/ register char *buf_end; /* the first unused position in |buffer| */
+register int c; /* current character, or number of characters just read
+*/ int in_word; /* are we within a word? */ long word_count, line_count,
+char_count; /* number of words, lines, and characters found in the file
+so far */
+<p>The grand totals must be initialized to zero at the beginning of the
+program. If we made these variables local to |main|, we would have to do
+this initialization explicitly; however, /'s globals are automatically
+zeroed. (Or rather, ``statically zeroed.'') (Get it?) @^Joke@>
+<p>&nbsp;/* total number of words, lines, and chars */
+<p>&nbsp;The present section, which does the counting that is \.wc's <i>raison
+d'&ecirc;tre</i>, was actually one of the simplest to write. We look at
+each character and change state if it begins or ends a word.
+<p>&nbsp;Buffered I/O allows us to count the number of characters almost
+for free.
+<p>&nbsp;It's convenient to output the statistics by defining a new function
+|wc_print|; then the same function can be used for the totals. Additionally
+we must decide here if we know the name of the file we have processed or
+if it was just |stdin|.
+<p>&lt;Write...@>
+<p>We might as well improve a bit on /'s \.wc by displaying the number
+of files too.
+<p>Here now is the function that prints the values according to the specified
+options. The calling routine is supposed to supply a newline. If an invalid
+option character is found we inform the user about proper usage of the
+command. Counts are printed in 8-digit fields so that they will line up
+in columns.
+<p>&nbsp;Incidentally, a test of this program against the system \.wc command
+on a SPARC station showed that the ``official'' \.wc was slightly slower.
+Furthermore, although that \.wc gave an appropriate error message for the
+options `\.-abc', it made no complaints about the options `\.-labc'! Dare
+we suggest that the system routine might have been better if its programmer
+had used a more literate approach?
+<br>&nbsp;
+<p>
+<hr><font size=-1>File edited.</font>
+<br><font size=-1>On 27 Apr 1999, 23:13.</font>
+</body>
+</html>

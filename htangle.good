@@ -1,0 +1,231 @@
+/************************************************************************/
+/* 
+<HTML>
+<HEADER>
+<TITLE>Htangle</TITLE>
+</HEADER>
+<BODY>
+<a name="includes">includes</a>
+<pre>
+ *----------------------------------------------------------------------*/
+/* TYPES - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - */
+/* INCLUDE FILES - - - - - - - - - - - - - - - - - -  - - - - - - - - - */
+#include <stdio.h>
+#include <string.h>
+#include "htmldef.h"
+
+#include <sys/types.h>
+#include <time.h>
+
+/* CONSTANTS- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - *
+</pre>
+<HTML>
+<P>RCS ID String:  $Id: htmlextract.c,v 1.4 1995/09/26 15:43:43 wadeh Exp $<P>
+</HTML> 
+<pre>
+*/
+static char rcsid[] = "$Id: htmlextract.c,v 1.4 1999/04/26 15:43:43 steveg Exp $";   
+
+#define TRUE (1==1)
+#define FALSE (1==0)
+/* #define INFILE    stdin */
+#define OUTFILE   stdout
+#define PROG_NAME "htangle"
+
+/* LOCAL DATA - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+
+FILE *INFILE = stdin;  /* input file -- typ. stdin */
+
+/* EXTERNAL PROCEDURES- - - - - - - - - - - - - - - - - - - - - - - - - */
+/* EXTERNAL DATA- - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/* PROTOTYPES - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
+/*
+</pre>
+<HTML> 
+<CENTER><HR>  Copyright (C) 1999 Steve Gibson (under GPL) </CENTER>
+</HTML> 
+*/
+/************************************************************************/
+
+/************************************************************************
+<HTML>
+<HR><H1> Procedure:  PrintHelp </H1><UL> 
+<LI>     Purpose:    print help for this module
+<LI>     Inputs:     none 
+<LI>     Outputs:    stderr
+</UL><H2>Notes: </H2><OL> 
+<LI>Prints help info on standard output
+</OL><H2>Requirements: </H2> <OL> 
+<LI>(no number) - all programs should print help with -h, -H or -? options
+</OL> 
+</HTML>
+<pre> 
+ ************************************************************************/
+void PrintHelp()
+{
+  fprintf (stderr, PROG_NAME ":  Program to extract HTML from .c or .h\n");
+  fprintf (stderr, "  Usage:  htangle -h  -- this help\n");
+  fprintf (stderr, "          -iifile >ofile  -- specifiy input file\n");
+  fprintf (stderr, "          <ifile >ofile   -- stdin for input\n");
+  fprintf (stderr, "  Version:  %s\n", rcsid);
+}
+/************************************************************************
+</pre>
+<HTML>
+<HR><H1> Procedure:  PrintVersion </H1><UL> 
+<LI>     Purpose:    print version for this module
+<LI>     Inputs:     none 
+<LI>     Outputs:    stderr
+</UL> 
+</UL><H2>Notes: </H2><OL> 
+<LI>Prints version number for program
+</OL><H2>Requirements: </H2> <OL> 
+<LI>(no number) - all programs should print version with -V option
+</OL> 
+
+</HTML>
+<pre> 
+ ************************************************************************/
+void PrintVersion ()
+{
+  fprintf (stderr, PROG_NAME ":  version:  %s\n", rcsid);
+}
+
+/************************************************************************
+</pre>
+<HTML>
+<HR><H1> Procedure:  main </H1><UL> 
+<LI>     Purpose:    module main procedure
+<LI>     Inputs:     none 
+<LI>     Outputs:    stdout, stderr
+
+</UL><H2>Notes: </H2><OL> 
+<LI>Usage:  htangle <ifile.[c,C,CC,h] >ifile.html
+<LI> Extracts text bracketed by <HTML> and </HTML>
+<LI> Puts <HTML> at start, </HTML> at end
+<LI> Uses stdin for input, stdout for output, should be modified
+     to accept a file name and cmd-line args (e.g., use getopt).
+
+</OL><H2>Requirements: </H2> <OL> 
+<LI> (1) Extract source code from HTML commented code
+</OL> 
+</HTML>
+<pre> 
+ ************************************************************************/
+
+int main (argc, argv)
+int argc;
+char *argv[];
+{
+
+char caLineIn[1024];
+int  iHtmlFlag  = FALSE;
+char *pszInFile = "stdin";
+int  iVerbose   = TRUE;
+int  iLine      = 0;
+int  iHLines    = 0;
+time_t lTime;   
+char   *pszAsciiTime;
+int    ii;
+
+  /* get current time into a string */
+  time (&lTime);
+  pszAsciiTime = ctime(&lTime);
+
+  /* check cmd line args */
+  if (argc > 1)
+  {
+    for (ii=1; ii<argc; ii++)
+    {
+      if (argv[ii][0] == '-')
+      {
+	switch (argv[ii][1])
+	{
+	case 'h':
+	case 'H':
+	case '?':
+	  PrintHelp();
+	  exit(0);
+	  break;
+	case 'V':
+	  PrintVersion();
+	  exit(0);
+	  break;
+	case 'i':
+	  pszInFile = &argv[ii][2];
+	  break;
+	default:
+	  PrintHelp();
+	  exit(1);
+	  break;
+	}
+      }
+    }
+  }
+
+  /* try to open input file if not stdin */
+  if (strcmp (pszInFile, "stdin") != 0)
+  {
+    INFILE = fopen (pszInFile, "r");
+    if (INFILE == NULL)
+    {
+      fprintf (stderr, "Error opening %s, exiting\n", pszInFile);
+      exit(1);
+    }
+  }
+	  
+  /* print HTML header info */
+  printf ("/* htangle output \n");
+/*   printf ("<BODY>\n"); -- let user do this */
+  printf ("<!code:  extracted from %s by %s>\n", pszInFile, PROG_NAME);
+  printf ("<!        on date %s> */\n", pszAsciiTime);
+  iHtmlFlag = FALSE;
+  while (fgets(caLineIn, sizeof(caLineIn)-2, INFILE) != NULL)
+  {
+    iLine++;
+    /* if HTML off, check for start of HTML and if so, set flag */
+    if (iHtmlFlag == FALSE)
+    {
+      if ((strncmp(HTML_START1, caLineIn, sizeof(HTML_START1)-1) == 0) ||
+          (strncmp(HTML_START2, caLineIn, sizeof(HTML_START2)-1) == 0))
+      {
+        iHtmlFlag = TRUE;
+        if (iVerbose == TRUE)
+          fprintf (stderr, "%05d pre ON\n", iLine);
+      }
+    } 
+    /* if HTML on, check for end of HTML and if so, reset flag */
+    else 
+    {
+      if ((strncmp(HTML_END1, caLineIn, sizeof(HTML_END1)-1) == 0) ||
+          (strncmp(HTML_END2, caLineIn, sizeof(HTML_END2)-1) == 0))
+      {
+        iHtmlFlag = FALSE;
+        if (iVerbose == TRUE)
+          fprintf (stderr, "%05d pre OFF\n", iLine);
+      }
+      if (iHtmlFlag == TRUE)
+      {
+        fputs (caLineIn, OUTFILE);
+	iHLines++;
+      }
+    } 
+  } 
+/*  printf ("</BODY>\n"); -- let user do this */
+  printf ("/* end of htangle output */");
+  if (iVerbose == TRUE)
+  {
+    fprintf (stderr, "Total lines:  %d, CODE lines:  %d\n", iLine, iHLines);
+  }
+
+  exit(0);
+
+}
+
+
+/*
+</pre>
+<HTML> 
+</BODY>
+</HTML> 
+*/
